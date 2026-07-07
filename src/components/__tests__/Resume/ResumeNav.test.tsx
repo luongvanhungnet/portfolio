@@ -14,33 +14,41 @@ describe('ResumeNav', () => {
   it('renders links to all resume sections', () => {
     render(<ResumeNav />);
 
-    expect(screen.getByRole('link', { name: /experience/i })).toHaveAttribute(
-      'href',
-      '#experience',
-    );
-    expect(screen.getByRole('link', { name: /education/i })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /học vấn/i })).toHaveAttribute(
       'href',
       '#education',
     );
-    expect(screen.getByRole('link', { name: /skills/i })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /định hướng/i })).toHaveAttribute(
+      'href',
+      '#focus',
+    );
+    expect(screen.getByRole('link', { name: /dự án/i })).toHaveAttribute(
+      'href',
+      '#projects',
+    );
+    expect(screen.getByRole('link', { name: /kỹ năng/i })).toHaveAttribute(
       'href',
       '#skills',
     );
-    expect(screen.getByRole('link', { name: /courses/i })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /môn học/i })).toHaveAttribute(
       'href',
       '#courses',
     );
-    expect(screen.getByRole('link', { name: /references/i })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /thành tích/i })).toHaveAttribute(
       'href',
-      '#references',
+      '#achievements',
+    );
+    expect(screen.getByRole('link', { name: /liên hệ/i })).toHaveAttribute(
+      'href',
+      '#contact',
     );
   });
 
-  it('renders 5 navigation links', () => {
+  it('renders 7 navigation links', () => {
     render(<ResumeNav />);
 
     const links = screen.getAllByRole('link');
-    expect(links.length).toBe(5);
+    expect(links.length).toBe(7);
   });
 
   it('has correct CSS class', () => {
@@ -50,10 +58,10 @@ describe('ResumeNav', () => {
     expect(nav).toBeInTheDocument();
   });
 
-  it('experience link is active by default', () => {
+  it('education link is active by default', () => {
     render(<ResumeNav />);
 
-    const experienceLink = screen.getByRole('link', { name: /experience/i });
-    expect(experienceLink).toHaveClass('active');
+    const educationLink = screen.getByRole('link', { name: /học vấn/i });
+    expect(educationLink).toHaveClass('active');
   });
 });

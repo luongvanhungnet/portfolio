@@ -30,10 +30,24 @@ describe('Cell', () => {
     expect(screen.getByText('2023')).toBeInTheDocument();
   });
 
+  it('renders displayDate when provided', () => {
+    render(<Cell data={{ ...mockProject, displayDate: '2025 - 2026' }} />);
+    expect(screen.getByText('2025 - 2026')).toBeInTheDocument();
+  });
+
   it('renders project image with alt text', () => {
     render(<Cell data={mockProject} />);
     const image = screen.getByAltText(mockProject.title);
     expect(image).toBeInTheDocument();
     expect(image).toHaveAttribute('src', expect.stringContaining('test.jpg'));
+  });
+
+  it('renders without an image', () => {
+    const { image: _image, ...projectWithoutImage } = mockProject;
+
+    render(<Cell data={projectWithoutImage} />);
+
+    expect(screen.queryByAltText(mockProject.title)).not.toBeInTheDocument();
+    expect(screen.getByText(mockProject.desc)).toBeInTheDocument();
   });
 });

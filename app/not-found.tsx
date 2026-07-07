@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { createPageMetadata } from '@/lib/metadata';
 
 export const metadata: Metadata = createPageMetadata({
-  title: 'Page Not Found',
-  description: 'The page you are looking for could not be found.',
+  title: 'Không tìm thấy trang',
+  description: 'Không tìm thấy trang bạn đang tìm.',
 });
 
 export default function NotFound() {
@@ -12,16 +12,16 @@ export default function NotFound() {
     <main className="not-found-page">
       <div className="not-found-content">
         <span className="not-found-code">404</span>
-        <h1 className="not-found-title">Page Not Found</h1>
+        <h1 className="not-found-title">Không tìm thấy trang</h1>
         <p className="not-found-message">
-          The page you&apos;re looking for doesn&apos;t exist or has been moved.
+          Trang bạn đang tìm không tồn tại hoặc đã được chuyển.
         </p>
         <div className="not-found-actions">
           <Link href="/" className="not-found-button">
-            Go Home
+            Về trang chủ
           </Link>
           <Link href="/contact" className="not-found-link">
-            Contact Me
+            Liên hệ
           </Link>
         </div>
       </div>

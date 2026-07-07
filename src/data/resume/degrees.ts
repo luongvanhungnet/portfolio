@@ -1,22 +1,18 @@
 export interface Degree {
   school: string;
   degree: string;
-  link: string;
-  year: number;
+  link?: string;
+  period: string;
+  details?: string[];
 }
 
 const degrees: Degree[] = [
   {
-    school: 'Stanford University',
-    degree: 'M.S. Computational and Mathematical Engineering (ICME)',
-    link: 'https://stanford.edu',
-    year: 2016,
-  },
-  {
-    school: 'University at Buffalo',
-    degree: 'B.S. Electrical Engineering, Computer Engineering',
-    link: 'https://buffalo.edu',
-    year: 2012,
+    school: 'Đại học Bách khoa Hà Nội',
+    degree: 'Chuyên ngành Công nghệ Thông tin Việt-Nhật',
+    link: 'https://hust.edu.vn',
+    period: '2023 - Hiện tại',
+    details: ['Trường Công nghệ Thông tin và Truyền thông'],
   },
 ];
 

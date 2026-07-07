@@ -3,7 +3,9 @@ import degrees from '@/data/resume/degrees';
 import work from '@/data/resume/work';
 import type { Post } from '@/lib/posts';
 import {
+  AUTHOR_EMAIL,
   AUTHOR_NAME,
+  AUTHOR_PHONE,
   SITE_DESCRIPTION,
   SITE_IMAGE_DIMENSIONS,
   SITE_IMAGE_PATH,
@@ -26,13 +28,14 @@ export const PERSON_ID = `${SITE_URL}/#person`;
 export const WEBSITE_ID = `${SITE_URL}/#website`;
 export const BLOG_ID = `${SITE_URL}/writing/#blog`;
 
-export const SITE_LANGUAGE = 'en-US';
-export const SITE_IMAGE = `${SITE_URL}${SITE_IMAGE_PATH}`;
+export const SITE_LANGUAGE = 'vi-VN';
+export const SITE_IMAGE = SITE_IMAGE_PATH
+  ? `${SITE_URL}${SITE_IMAGE_PATH}`
+  : undefined;
 export const HOME_URL = `${SITE_URL}/`;
 
 // Shared so the /writing metadata and the Blog node stay in sync.
-export const WRITING_DESCRIPTION =
-  'Articles on AI security, LLM red teaming, and trust & safety.';
+export const WRITING_DESCRIPTION = 'Các bài viết của Lương Văn Hưng.';
 
 type SchemaNode = Record<string, unknown>;
 
@@ -57,16 +60,27 @@ export const blogRef = () => ({ '@id': BLOG_ID });
  */
 export function personNode(): SchemaNode {
   const socialLinks = contact
-    .filter((item) => !item.link.startsWith('mailto:'))
+    .filter(
+      (item) =>
+        item.link.startsWith('http') && !item.link.startsWith('mailto:'),
+    )
     .map((item) => item.link);
-
-  const emailItem = contact.find((item) => item.link.startsWith('mailto:'));
-  const email = emailItem?.link.replace('mailto:', '');
 
   const currentJob = work[0];
 
   const [givenName, ...familyParts] = AUTHOR_NAME.split(' ');
   const familyName = familyParts.join(' ');
+  const image =
+    SITE_IMAGE && SITE_IMAGE_DIMENSIONS
+      ? {
+          '@type': 'ImageObject',
+          '@id': `${SITE_URL}/#person-image`,
+          url: SITE_IMAGE,
+          width: SITE_IMAGE_DIMENSIONS.width,
+          height: SITE_IMAGE_DIMENSIONS.height,
+          caption: AUTHOR_NAME,
+        }
+      : undefined;
 
   return {
     '@type': 'Person',
@@ -75,27 +89,25 @@ export function personNode(): SchemaNode {
     givenName,
     familyName,
     url: HOME_URL,
-    image: {
-      '@type': 'ImageObject',
-      '@id': `${SITE_URL}/#person-image`,
-      url: SITE_IMAGE,
-      width: SITE_IMAGE_DIMENSIONS.width,
-      height: SITE_IMAGE_DIMENSIONS.height,
-      caption: AUTHOR_NAME,
-    },
+    ...(image ? { image } : {}),
     description: SITE_DESCRIPTION,
-    jobTitle: currentJob.position,
-    ...(email && { email }),
+    ...(currentJob?.position ? { jobTitle: currentJob.position } : {}),
+    email: AUTHOR_EMAIL,
+    telephone: AUTHOR_PHONE,
     sameAs: socialLinks,
-    worksFor: {
-      '@type': 'Organization',
-      name: currentJob.name,
-      url: currentJob.url,
-    },
+    ...(currentJob?.name
+      ? {
+          worksFor: {
+            '@type': 'Organization',
+            name: currentJob.name,
+            ...(currentJob.url ? { url: currentJob.url } : {}),
+          },
+        }
+      : {}),
     alumniOf: degrees.map((degree) => ({
       '@type': 'CollegeOrUniversity',
       name: degree.school,
-      url: degree.link,
+      ...(degree.link ? { url: degree.link } : {}),
     })),
   };
 }
@@ -105,23 +117,28 @@ export function personNode(): SchemaNode {
  * results. Emitted site-wide alongside {@link personNode}.
  */
 export function websiteNode(): SchemaNode {
+  const image =
+    SITE_IMAGE && SITE_IMAGE_DIMENSIONS
+      ? {
+          '@type': 'ImageObject',
+          '@id': `${SITE_URL}/#website-image`,
+          url: SITE_IMAGE,
+          width: SITE_IMAGE_DIMENSIONS.width,
+          height: SITE_IMAGE_DIMENSIONS.height,
+          caption: AUTHOR_NAME,
+        }
+      : undefined;
+
   return {
     '@type': 'WebSite',
     '@id': WEBSITE_ID,
     url: HOME_URL,
     name: AUTHOR_NAME,
-    alternateName: ['mldangelo.com', 'mldangelo'],
+    alternateName: ['luongvanhungnet.xyz', 'luongvanhungnet'],
     description: SITE_DESCRIPTION,
     inLanguage: SITE_LANGUAGE,
     publisher: personRef(),
-    image: {
-      '@type': 'ImageObject',
-      '@id': `${SITE_URL}/#website-image`,
-      url: SITE_IMAGE,
-      width: SITE_IMAGE_DIMENSIONS.width,
-      height: SITE_IMAGE_DIMENSIONS.height,
-      caption: AUTHOR_NAME,
-    },
+    ...(image ? { image } : {}),
   };
 }
 
@@ -208,6 +225,16 @@ export function blogNode(dateModified?: string): SchemaNode {
 /** A BlogPosting for an individual post. */
 export function blogPostingNode(post: Post): SchemaNode {
   const url = `${SITE_URL}/writing/${post.slug}/`;
+  const image =
+    SITE_IMAGE && SITE_IMAGE_DIMENSIONS
+      ? {
+          '@type': 'ImageObject',
+          '@id': `${url}#blogposting-image`,
+          url: SITE_IMAGE,
+          width: SITE_IMAGE_DIMENSIONS.width,
+          height: SITE_IMAGE_DIMENSIONS.height,
+        }
+      : undefined;
 
   return {
     '@type': 'BlogPosting',
@@ -222,13 +249,7 @@ export function blogPostingNode(post: Post): SchemaNode {
     dateModified: post.date,
     author: personRef(),
     publisher: personRef(),
-    image: {
-      '@type': 'ImageObject',
-      '@id': `${url}#blogposting-image`,
-      url: SITE_IMAGE,
-      width: SITE_IMAGE_DIMENSIONS.width,
-      height: SITE_IMAGE_DIMENSIONS.height,
-    },
+    ...(image ? { image } : {}),
   };
 }
 

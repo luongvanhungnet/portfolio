@@ -5,15 +5,27 @@ interface DegreeProps {
 }
 
 export default function Degree({ data }: DegreeProps) {
+  const school = data.link ? (
+    <a href={data.link}>{data.school}</a>
+  ) : (
+    data.school
+  );
+
   return (
     <article className="degree-container">
       <header>
         <h4 className="degree">{data.degree}</h4>
         <p className="school">
-          <a href={data.link}>{data.school}</a>,{' '}
-          <time dateTime={String(data.year)}>{data.year}</time>
+          {school}, <span>{data.period}</span>
         </p>
       </header>
+      {data.details && data.details.length > 0 ? (
+        <ul className="points">
+          {data.details.map((detail) => (
+            <li key={detail}>{detail}</li>
+          ))}
+        </ul>
+      ) : null}
     </article>
   );
 }

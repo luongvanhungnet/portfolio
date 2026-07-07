@@ -1,32 +1,18 @@
 import Link from 'next/link';
 
 import ContactIcons from '@/components/Contact/ContactIcons';
-import work from '@/data/resume/work';
-
-import ThemePortrait from './ThemePortrait';
+import { AUTHOR_NAME, SITE_DESCRIPTION } from '@/lib/utils';
 
 export default function Footer() {
-  const currentRole = `${work[0].position} at ${work[0].name}`;
-
   return (
     <footer className="site-footer-new">
       <div className="footer-content">
         <div className="footer-identity">
-          <Link href="/" className="footer-avatar">
-            <ThemePortrait width={80} height={80} />
-          </Link>
           <div className="footer-info">
-            <h3>Michael D&apos;Angelo</h3>
-            <p className="footer-role">{currentRole}</p>
+            <h3>{AUTHOR_NAME}</h3>
+            <p className="footer-role">{SITE_DESCRIPTION}</p>
             <p className="footer-copyright">
-              &copy; {new Date().getFullYear()} ·{' '}
-              <a
-                href="https://github.com/mldangelo/personal-site"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Source
-              </a>
+              &copy; {new Date().getFullYear()} · {AUTHOR_NAME}
             </p>
           </div>
         </div>
@@ -34,13 +20,13 @@ export default function Footer() {
         <div className="footer-right">
           <nav className="footer-links" aria-labelledby="footer-links-heading">
             <h4 id="footer-links-heading" className="footer-links-label">
-              Explore
+              Điều hướng
             </h4>
             <div className="footer-links-grid">
-              <Link href="/about">About</Link>
-              <Link href="/resume">Resume</Link>
-              <Link href="/projects">Projects</Link>
-              <Link href="/contact">Contact</Link>
+              <Link href="/about">Giới thiệu</Link>
+              <Link href="/resume">Hồ sơ</Link>
+              <Link href="/projects">Dự án</Link>
+              <Link href="/contact">Liên hệ</Link>
             </div>
           </nav>
 
@@ -49,7 +35,7 @@ export default function Footer() {
             aria-labelledby="footer-social-heading"
           >
             <h4 id="footer-social-heading" className="footer-social-label">
-              Connect
+              Kết nối
             </h4>
             <ContactIcons />
           </div>

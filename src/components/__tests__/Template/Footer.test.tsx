@@ -11,12 +11,12 @@ describe('Footer', () => {
     expect(footer).toBeInTheDocument();
   });
 
-  it('displays the name and role', () => {
+  it('displays the name and CV summary', () => {
     render(<Footer />);
 
-    expect(screen.getByText("Michael D'Angelo")).toBeInTheDocument();
+    expect(screen.getAllByText('Lương Văn Hưng').length).toBeGreaterThan(0);
     expect(
-      screen.getByText('Member of the Technical Staff at OpenAI'),
+      screen.getByText(/Công nghệ Thông tin Việt-Nhật/i),
     ).toBeInTheDocument();
   });
 
@@ -32,19 +32,19 @@ describe('Footer', () => {
   it('renders navigation links', () => {
     render(<Footer />);
 
-    expect(screen.getByRole('link', { name: /about/i })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /giới thiệu/i })).toHaveAttribute(
       'href',
       '/about',
     );
-    expect(screen.getByRole('link', { name: /resume/i })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /hồ sơ/i })).toHaveAttribute(
       'href',
       '/resume',
     );
-    expect(screen.getByRole('link', { name: /projects/i })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /dự án/i })).toHaveAttribute(
       'href',
       '/projects',
     );
-    expect(screen.getByRole('link', { name: /contact/i })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /liên hệ/i })).toHaveAttribute(
       'href',
       '/contact',
     );
@@ -53,16 +53,8 @@ describe('Footer', () => {
   it('renders contact icons section', () => {
     render(<Footer />);
 
-    // Contact icons are rendered via ContactIcons component
     const socialSection = document.querySelector('.footer-social');
     expect(socialSection).toBeInTheDocument();
-    expect(screen.getByText('Connect')).toBeInTheDocument();
-  });
-
-  it('has link to home from avatar', () => {
-    render(<Footer />);
-
-    const avatarLink = document.querySelector('.footer-avatar');
-    expect(avatarLink).toHaveAttribute('href', '/');
+    expect(screen.getByText('Kết nối')).toBeInTheDocument();
   });
 });

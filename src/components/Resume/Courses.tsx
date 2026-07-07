@@ -10,10 +10,15 @@ function getRows(courses: CourseType[]) {
   return courses
     .sort((a, b) => {
       let ret = 0;
-      if (a.university > b.university) ret = -1;
-      else if (a.university < b.university) ret = 1;
-      else if (a.number > b.number) ret = 1;
-      else if (a.number < b.number) ret = -1;
+      const aUniversity = a.university ?? '';
+      const bUniversity = b.university ?? '';
+      const aNumber = a.number ?? '';
+      const bNumber = b.number ?? '';
+
+      if (aUniversity > bUniversity) ret = -1;
+      else if (aUniversity < bUniversity) ret = 1;
+      else if (aNumber > bNumber) ret = 1;
+      else if (aNumber < bNumber) ret = -1;
       return ret;
     })
     .map((course) => <Course data={course} key={course.title} />);
@@ -24,7 +29,7 @@ export default function Courses({ data }: CoursesProps) {
     <div className="courses">
       <div className="link-to" id="courses" />
       <div className="title">
-        <h3>Selected Courses</h3>
+        <h3>Môn học liên quan</h3>
       </div>
       <ul className="course-list">{getRows(data)}</ul>
     </div>

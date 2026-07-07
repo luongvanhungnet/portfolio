@@ -1,25 +1,26 @@
 import { describe, expect, it } from 'vitest';
 
-import { SITE_URL } from '@/lib/utils';
-
+import { AUTHOR_NAME, SITE_URL } from '@/lib/utils';
 import { GET } from '../route';
 
 describe('feed.xml route', () => {
-  it('uses canonical trailing-slash links for writing pages', async () => {
+  it('uses canonical feed links and Vietnamese channel metadata', async () => {
     const response = await GET();
     const xml = await response.text();
 
     expect(xml).toContain(`${SITE_URL}/writing/`);
-    expect(xml).toContain(`${SITE_URL}/writing/claude-code-outage/`);
-    expect(xml).toContain(`${SITE_URL}/writing/eurostar-chatbot-analysis/`);
-    expect(xml).toContain(`${SITE_URL}/writing/shipping-with-claude-code/`);
+    expect(xml).toContain(`${SITE_URL}/feed.xml`);
+    expect(xml).toContain(`${AUTHOR_NAME} - Bài viết`);
+    expect(xml).toContain('<language>vi-vn</language>');
+    expect(xml).not.toContain(`${SITE_URL}/feed.xml/`);
   });
 
-  it('keeps the feed self link file-like', async () => {
+  it('does not include template post items when writing content is empty', async () => {
     const response = await GET();
     const xml = await response.text();
 
-    expect(xml).toContain(`${SITE_URL}/feed.xml`);
-    expect(xml).not.toContain(`${SITE_URL}/feed.xml/`);
+    expect(xml).not.toContain('<item>');
+    expect(xml).not.toContain('claude-code-outage');
+    expect(xml).not.toContain('shipping-with-claude-code');
   });
 });

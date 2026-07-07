@@ -5,23 +5,13 @@ import Courses from '../../Resume/Courses';
 import Course from '../../Resume/Courses/Course';
 
 const mockCourses = [
+  { title: 'Machine Learning' },
+  { title: 'Deep Learning' },
   {
-    title: 'Machine Learning',
-    number: 'CS 229',
-    link: 'http://cs229.stanford.edu/',
-    university: 'Stanford',
-  },
-  {
-    title: 'Deep Learning',
-    number: 'CS 230',
-    link: 'http://cs230.stanford.edu/',
-    university: 'Stanford',
-  },
-  {
-    title: 'Algorithms',
-    number: 'CS 161',
-    link: 'http://cs161.stanford.edu/',
-    university: 'MIT',
+    title: 'Cấu trúc dữ liệu và giải thuật',
+    number: 'IT3011',
+    link: 'https://example.com/course',
+    university: 'HUST',
   },
 ];
 
@@ -30,7 +20,7 @@ describe('Courses', () => {
     render(<Courses data={mockCourses} />);
 
     expect(
-      screen.getByRole('heading', { name: /selected courses/i }),
+      screen.getByRole('heading', { name: /môn học liên quan/i }),
     ).toBeInTheDocument();
   });
 
@@ -39,15 +29,16 @@ describe('Courses', () => {
 
     expect(screen.getByText('Machine Learning')).toBeInTheDocument();
     expect(screen.getByText('Deep Learning')).toBeInTheDocument();
-    expect(screen.getByText('Algorithms')).toBeInTheDocument();
+    expect(
+      screen.getByText('Cấu trúc dữ liệu và giải thuật'),
+    ).toBeInTheDocument();
   });
 
-  it('renders course numbers', () => {
+  it('renders course numbers only when present', () => {
     render(<Courses data={mockCourses} />);
 
-    expect(screen.getByText(/CS 229/)).toBeInTheDocument();
-    expect(screen.getByText(/CS 230/)).toBeInTheDocument();
-    expect(screen.getByText(/CS 161/)).toBeInTheDocument();
+    expect(screen.getByText(/IT3011/)).toBeInTheDocument();
+    expect(screen.queryByText(/undefined/)).not.toBeInTheDocument();
   });
 
   it('renders courses as list items', () => {
@@ -60,15 +51,6 @@ describe('Courses', () => {
     expect(items.length).toBe(mockCourses.length);
   });
 
-  it('sorts courses by university then number', () => {
-    render(<Courses data={mockCourses} />);
-
-    const items = screen.getAllByRole('listitem');
-    // Stanford courses should come before MIT (reverse alpha)
-    // And within Stanford, sorted by number
-    expect(items.length).toBe(3);
-  });
-
   it('has anchor link for navigation', () => {
     render(<Courses data={mockCourses} />);
 
@@ -78,21 +60,21 @@ describe('Courses', () => {
 });
 
 describe('Course', () => {
-  const mockCourse = {
-    title: 'Machine Learning',
-    number: 'CS 229',
-    link: 'http://cs229.stanford.edu/',
-    university: 'Stanford',
-  };
+  it('renders course title without requiring a link or number', () => {
+    render(<Course data={{ title: 'Machine Learning' }} />);
 
-  it('renders course number and title', () => {
-    render(<Course data={mockCourse} />);
-
-    expect(screen.getByText(/CS 229/)).toBeInTheDocument();
     expect(screen.getByText('Machine Learning')).toBeInTheDocument();
+    expect(screen.queryByRole('link')).not.toBeInTheDocument();
   });
 
-  it('renders course as link', () => {
+  it('renders course as link when link is present', () => {
+    const mockCourse = {
+      title: 'Cấu trúc dữ liệu và giải thuật',
+      number: 'IT3011',
+      link: 'https://example.com/course',
+      university: 'HUST',
+    };
+
     render(<Course data={mockCourse} />);
 
     const link = screen.getByRole('link');
@@ -100,7 +82,7 @@ describe('Course', () => {
   });
 
   it('renders as list item', () => {
-    render(<Course data={mockCourse} />);
+    render(<Course data={{ title: 'Machine Learning' }} />);
 
     const item = screen.getByRole('listitem');
     expect(item).toBeInTheDocument();

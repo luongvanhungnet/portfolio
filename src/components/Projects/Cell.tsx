@@ -9,21 +9,33 @@ interface CellProps {
 }
 
 export default function Cell({ data }: CellProps) {
-  const { title, subtitle, link, image, date, desc, tech, featured } = data;
+  const {
+    title,
+    subtitle,
+    link,
+    image,
+    date,
+    displayDate,
+    desc,
+    tech,
+    featured,
+  } = data;
 
   const hasLink = Boolean(link);
 
   const cardContent = (
     <>
-      <div className="project-card-image">
-        <Image
-          src={image}
-          alt={title}
-          width={PROJECT_IMAGE.width}
-          height={PROJECT_IMAGE.height}
-          sizes="(max-width: 600px) 100vw, 50vw"
-        />
-      </div>
+      {image ? (
+        <div className="project-card-image">
+          <Image
+            src={image}
+            alt={title}
+            width={PROJECT_IMAGE.width}
+            height={PROJECT_IMAGE.height}
+            sizes="(max-width: 600px) 100vw, 50vw"
+          />
+        </div>
+      ) : null}
 
       <div className="project-card-content">
         <header className="project-card-header">
@@ -44,7 +56,7 @@ export default function Cell({ data }: CellProps) {
         )}
 
         <time className="project-card-date" dateTime={date}>
-          {dayjs(date).format('YYYY')}
+          {displayDate ?? dayjs(date).format('YYYY')}
         </time>
       </div>
     </>

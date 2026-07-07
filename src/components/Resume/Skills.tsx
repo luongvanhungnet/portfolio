@@ -30,8 +30,8 @@ function buttonReducer(state: ButtonState, action: ButtonAction): ButtonState {
         newButtons[key] = action.label === key && !state[key];
       }
 
-      // Turn on 'All' button if no other buttons are active
-      newButtons.All = !Object.keys(state).some((key) => newButtons[key]);
+      // Turn on the default button if no other buttons are active
+      newButtons['Tất cả'] = !Object.keys(state).some((key) => newButtons[key]);
       return newButtons;
     }
     default:
@@ -41,7 +41,7 @@ function buttonReducer(state: ButtonState, action: ButtonAction): ButtonState {
 
 export default function Skills({ skills, categories }: SkillsProps) {
   const initialButtons = Object.fromEntries(
-    [['All', false]].concat(categories.map(({ name }) => [name, false])),
+    [['Tất cả', false]].concat(categories.map(({ name }) => [name, false])),
   );
 
   const [buttons, dispatch] = useReducer(buttonReducer, initialButtons);
@@ -67,25 +67,27 @@ export default function Skills({ skills, categories }: SkillsProps) {
   // Get active category
   const activeCategory = Object.keys(buttons).reduce(
     (cat, key) => (buttons[key] ? key : cat),
-    'All',
+    'Tất cả',
   );
 
   // Memoize sorting, filtering, and grouping to avoid recalculating on every render
   const groupedSkills = useMemo(() => {
     // Sort skills by competency (highest first), then alphabetically
     const sortedSkills = [...skills].sort((a, b) => {
-      if (a.competency !== b.competency) return b.competency - a.competency;
+      const aCompetency = a.competency ?? 0;
+      const bCompetency = b.competency ?? 0;
+      if (aCompetency !== bCompetency) return bCompetency - aCompetency;
       return a.title.localeCompare(b.title);
     });
 
     // Filter skills based on active category
     const filteredSkills = sortedSkills.filter(
       (skill) =>
-        activeCategory === 'All' || skill.category.includes(activeCategory),
+        activeCategory === 'Tất cả' || skill.category.includes(activeCategory),
     );
 
     // Group skills by their primary category for grouped view
-    if (activeCategory === 'All') {
+    if (activeCategory === 'Tất cả') {
       return categories.reduce(
         (groups, category) => {
           const categorySkills = filteredSkills.filter((skill) =>
@@ -106,7 +108,7 @@ export default function Skills({ skills, categories }: SkillsProps) {
     <div className="skills">
       <div className="link-to" id="skills" />
       <div className="title">
-        <h3>Skills</h3>
+        <h3>Kỹ năng</h3>
       </div>
       <div className="skill-button-container">{buttonElements}</div>
       <div className="skill-groups">

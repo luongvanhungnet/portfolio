@@ -7,31 +7,23 @@ export interface Route {
 const routes: Route[] = [
   {
     index: true,
-    label: "Michael D'Angelo",
+    label: 'Lương Văn Hưng',
     path: '/',
   },
   {
-    label: 'About',
+    label: 'Giới thiệu',
     path: '/about',
   },
   {
-    label: 'Resume',
+    label: 'Hồ sơ',
     path: '/resume',
   },
   {
-    label: 'Writing',
-    path: '/writing',
-  },
-  {
-    label: 'Stats',
-    path: '/stats',
-  },
-  {
-    label: 'Contact',
+    label: 'Liên hệ',
     path: '/contact',
   },
   {
-    label: 'Archive',
+    label: 'Dự án',
     path: '/projects',
   },
 ];

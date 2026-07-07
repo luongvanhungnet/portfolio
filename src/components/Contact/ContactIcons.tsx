@@ -9,11 +9,20 @@ export default function ContactIcons() {
         <li key={s.label}>
           <a
             href={s.link}
-            aria-label={`${s.label} (opens in new tab)`}
-            target="_blank"
-            rel="noopener noreferrer"
+            aria-label={
+              s.link.startsWith('http')
+                ? `${s.label} (opens in new tab)`
+                : s.label
+            }
+            {...(s.link.startsWith('http')
+              ? { target: '_blank', rel: 'noopener noreferrer' }
+              : {})}
           >
-            <FontAwesomeIcon icon={s.icon} className="size-5" />
+            {s.icon ? (
+              <FontAwesomeIcon icon={s.icon} className="size-5" />
+            ) : (
+              <span className="icon-text">{s.label}</span>
+            )}
           </a>
         </li>
       ))}
