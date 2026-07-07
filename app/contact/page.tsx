@@ -5,10 +5,11 @@ import EmailLink from '@/components/Contact/EmailLink';
 
 import PageWrapper from '@/components/Template/PageWrapper';
 import { createPageMetadata } from '@/lib/metadata';
+import { AUTHOR_EMAIL, AUTHOR_NAME } from '@/lib/utils';
 
 export const metadata: Metadata = createPageMetadata({
-  title: 'Contact',
-  description: "Contact Michael D'Angelo via email @ hi@mldangelo.com",
+  title: 'Liên hệ',
+  description: `Liên hệ ${AUTHOR_NAME} qua email ${AUTHOR_EMAIL}.`,
   path: '/contact/',
 });
 
@@ -17,17 +18,17 @@ export default function ContactPage() {
     <PageWrapper>
       <section className="contact-page">
         <header className="contact-header">
-          <h1 className="page-title">Get in Touch</h1>
+          <h1 className="page-title">Liên hệ</h1>
         </header>
 
         <div className="contact-content">
           <div className="contact-email-block">
             <EmailLink />
-            <p className="contact-hint">Usually respond within 24 hours</p>
+            <p className="contact-hint">Email và các kênh liên hệ trong CV</p>
           </div>
 
           <div className="contact-divider">
-            <span>or find me on</span>
+            <span>hoặc kết nối qua</span>
           </div>
 
           <ContactIcons />

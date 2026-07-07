@@ -11,12 +11,10 @@ describe('projects data', () => {
   it('each project has required properties', () => {
     for (const project of projects) {
       expect(project).toHaveProperty('title');
-      expect(project).toHaveProperty('image');
       expect(project).toHaveProperty('date');
       expect(project).toHaveProperty('desc');
 
       expect(typeof project.title).toBe('string');
-      expect(typeof project.image).toBe('string');
       expect(typeof project.date).toBe('string');
       expect(typeof project.desc).toBe('string');
     }
@@ -36,7 +34,9 @@ describe('projects data', () => {
 
   it('image paths start with /', () => {
     for (const project of projects) {
-      expect(project.image.startsWith('/')).toBe(true);
+      if (project.image) {
+        expect(project.image.startsWith('/')).toBe(true);
+      }
     }
   });
 
@@ -84,5 +84,16 @@ describe('projects data', () => {
   it('has at least one featured project', () => {
     const featured = projects.filter((p) => p.featured);
     expect(featured.length).toBeGreaterThanOrEqual(1);
+  });
+
+  it('contains the four projects from the TeX resume', () => {
+    const titles = projects.map((project) => project.title);
+
+    expect(titles).toEqual([
+      'VBAS -- Vehicle Breakdown Assistance System',
+      'BlueMoon Apartment Management System',
+      'JP-Taxi -- Hệ thống đặt xe trực tuyến',
+      'Restaurant Finder -- Ứng dụng tìm kiếm nhà hàng',
+    ]);
   });
 });

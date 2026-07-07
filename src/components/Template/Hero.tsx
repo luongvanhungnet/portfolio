@@ -1,45 +1,36 @@
 import Link from 'next/link';
 
-import ThemePortrait from './ThemePortrait';
-
 export default function Hero() {
   return (
     <section className="hero">
       <div className="hero-content">
-        <div className="hero-avatar">
-          <ThemePortrait width={160} height={160} priority />
-        </div>
-
         <h1 className="hero-title">
-          <span className="hero-name">Michael D&apos;Angelo</span>
+          <span className="hero-name">Lương Văn Hưng</span>
         </h1>
 
         <p className="hero-tagline">
-          Member of the Technical Staff at{' '}
-          <a href="https://openai.com" className="hero-highlight">
-            OpenAI
+          Sinh viên Công nghệ Thông tin Việt-Nhật tại{' '}
+          <a href="https://hust.edu.vn" className="hero-highlight">
+            Đại học Bách khoa Hà Nội
           </a>
-          , where I work on{' '}
-          <a href="https://promptfoo.dev" className="hero-highlight">
-            Promptfoo
-          </a>{' '}
-          and agent security.
+          .
           <br />
-          Previously co-founded, scaled, and sold Promptfoo to OpenAI.
+          Định hướng AI, Machine Learning, Deep Learning, Big Data, Data
+          Analysis và phát triển Full-stack.
         </p>
 
         <div className="hero-chips">
-          <span className="hero-chip">YC Alum</span>
-          <span className="hero-chip">Stanford ICME</span>
-          <span className="hero-chip">Co-founded Arthena & Matroid</span>
+          <span className="hero-chip">AI / Machine Learning</span>
+          <span className="hero-chip">Full-stack</span>
+          <span className="hero-chip">HUST 2023 - Hiện tại</span>
         </div>
 
         <div className="hero-cta">
           <Link href="/about" className="button">
-            About Me
+            Giới thiệu
           </Link>
           <Link href="/resume" className="button button-secondary">
-            View Resume
+            Xem hồ sơ
           </Link>
         </div>
       </div>

@@ -1,51 +1,43 @@
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import { faAngellist } from '@fortawesome/free-brands-svg-icons/faAngellist';
-import { faFacebookF } from '@fortawesome/free-brands-svg-icons/faFacebookF';
 import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub';
-import { faInstagram } from '@fortawesome/free-brands-svg-icons/faInstagram';
 import { faLinkedinIn } from '@fortawesome/free-brands-svg-icons/faLinkedinIn';
-import { faTwitter } from '@fortawesome/free-brands-svg-icons/faTwitter';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons/faEnvelope';
+import {
+  AUTHOR_EMAIL,
+  AUTHOR_GITHUB_URL,
+  AUTHOR_LINKEDIN_URL,
+  AUTHOR_PHONE,
+  AUTHOR_PHONE_TEL,
+  AUTHOR_WEBSITE_URL,
+} from '@/lib/utils';
 
 export interface ContactItem {
   link: string;
   label: string;
-  icon: IconDefinition;
+  icon?: IconDefinition;
 }
 
 const data: ContactItem[] = [
   {
-    link: 'https://www.linkedin.com/in/michaelldangelo',
+    link: AUTHOR_LINKEDIN_URL,
     label: 'LinkedIn',
     icon: faLinkedinIn,
   },
   {
-    link: 'https://github.com/mldangelo',
+    link: AUTHOR_GITHUB_URL,
     label: 'Github',
     icon: faGithub,
   },
   {
-    link: 'https://x.com/dangelosaurus',
-    label: 'X',
-    icon: faTwitter,
+    link: AUTHOR_WEBSITE_URL,
+    label: 'Website',
   },
   {
-    link: 'https://angel.co/michael-d-angelo',
-    label: 'Angel List',
-    icon: faAngellist,
+    link: `tel:${AUTHOR_PHONE_TEL}`,
+    label: AUTHOR_PHONE,
   },
   {
-    link: 'https://www.instagram.com/dangelosaurus/',
-    label: 'Instagram',
-    icon: faInstagram,
-  },
-  {
-    link: 'https://facebook.com/d',
-    label: 'Facebook',
-    icon: faFacebookF,
-  },
-  {
-    link: 'mailto:michael.l.dangelo@gmail.com',
+    link: `mailto:${AUTHOR_EMAIL}`,
     label: 'Email',
     icon: faEnvelope,
   },

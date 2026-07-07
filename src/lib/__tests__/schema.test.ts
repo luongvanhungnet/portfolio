@@ -1,5 +1,3 @@
-import fs from 'node:fs';
-import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 
 import type { Post } from '@/lib/posts';
@@ -18,60 +16,7 @@ import {
   webPageNode,
   websiteNode,
 } from '@/lib/schema';
-import {
-  AUTHOR_NAME,
-  SITE_IMAGE_DIMENSIONS,
-  SITE_IMAGE_PATH,
-  SITE_URL,
-} from '@/lib/utils';
-
-const START_OF_FRAME_MARKERS = new Set([
-  0xc0, 0xc1, 0xc2, 0xc3, 0xc5, 0xc6, 0xc7, 0xc9, 0xca, 0xcb, 0xcd, 0xce, 0xcf,
-]);
-
-function readJpegDimensions(filePath: string) {
-  const buffer = fs.readFileSync(filePath);
-
-  if (buffer[0] !== 0xff || buffer[1] !== 0xd8) {
-    throw new Error(`Expected a JPEG file at ${filePath}`);
-  }
-
-  let offset = 2;
-
-  while (offset < buffer.length) {
-    if (buffer[offset] !== 0xff) {
-      throw new Error(`Invalid JPEG marker at byte ${offset}`);
-    }
-
-    while (buffer[offset] === 0xff) {
-      offset += 1;
-    }
-
-    const marker = buffer[offset];
-    offset += 1;
-
-    if (marker === 0xd9 || marker === 0xda) {
-      break;
-    }
-
-    if (marker === 0x01 || (marker >= 0xd0 && marker <= 0xd7)) {
-      continue;
-    }
-
-    const length = buffer.readUInt16BE(offset);
-
-    if (START_OF_FRAME_MARKERS.has(marker)) {
-      return {
-        height: buffer.readUInt16BE(offset + 3),
-        width: buffer.readUInt16BE(offset + 5),
-      };
-    }
-
-    offset += length;
-  }
-
-  throw new Error(`Could not find JPEG dimensions for ${filePath}`);
-}
+import { AUTHOR_EMAIL, AUTHOR_NAME, AUTHOR_PHONE, SITE_URL } from '@/lib/utils';
 
 const mockPost: Post = {
   slug: 'test-article',
@@ -91,28 +36,30 @@ describe('personNode', () => {
   it('uses author name and split given/family names', () => {
     const node = personNode();
     expect(node.name).toBe(AUTHOR_NAME);
-    expect(node.givenName).toBe('Michael');
-    expect(node.familyName).toBe("D'Angelo");
+    expect(node.givenName).toBe('Lương');
+    expect(node.familyName).toBe('Văn Hưng');
   });
 
-  it('exposes an ImageObject and social sameAs links', () => {
+  it('exposes CV contact links without a profile image', () => {
     const node = personNode();
-    const image = node.image as Record<string, unknown>;
-    expect(image['@type']).toBe('ImageObject');
-    expect(image.url).toBe(`${SITE_URL}/images/me.jpg`);
-    expect(image.width).toBe(SITE_IMAGE_DIMENSIONS.width);
-    expect(image.height).toBe(SITE_IMAGE_DIMENSIONS.height);
-    expect(Array.isArray(node.sameAs)).toBe(true);
-    expect((node.sameAs as string[]).length).toBeGreaterThan(0);
+    expect(node.image).toBeUndefined();
+    expect(node.email).toBe(AUTHOR_EMAIL);
+    expect(node.telephone).toBe(AUTHOR_PHONE);
+    expect(node.sameAs).toEqual(
+      expect.arrayContaining([
+        'https://github.com/luongvanhungnet',
+        'https://www.linkedin.com/in/l%C6%B0%C6%A1ng-v%C4%83n-h%C6%B0ng-216612420/',
+      ]),
+    );
   });
 
-  it('includes worksFor and alumniOf', () => {
+  it('omits worksFor when the CV has no work history and includes alumniOf', () => {
     const node = personNode();
-    const worksFor = node.worksFor as Record<string, unknown>;
-    expect(worksFor['@type']).toBe('Organization');
-    expect(worksFor.name).toBe('OpenAI');
+    expect(node.worksFor).toBeUndefined();
+    expect(node.jobTitle).toBeUndefined();
     const alumniOf = node.alumniOf as Record<string, unknown>[];
     expect(alumniOf[0]['@type']).toBe('CollegeOrUniversity');
+    expect(alumniOf[0].name).toBe('Đại học Bách khoa Hà Nội');
   });
 });
 
@@ -123,12 +70,13 @@ describe('websiteNode', () => {
     expect(node['@id']).toBe(WEBSITE_ID);
     expect(node.url).toBe(HOME_URL);
     expect((node.publisher as Record<string, unknown>)['@id']).toBe(PERSON_ID);
+    expect(node.image).toBeUndefined();
   });
 });
 
 describe('profilePageNode', () => {
   it('is a ProfilePage linked to the site and the Person', () => {
-    const node = profilePageNode({ url: HOME_URL, name: 'About' });
+    const node = profilePageNode({ url: HOME_URL, name: 'Giới thiệu' });
     expect(node['@type']).toBe('ProfilePage');
     expect(node['@id']).toBe(`${HOME_URL}#webpage`);
     expect((node.isPartOf as Record<string, unknown>)['@id']).toBe(WEBSITE_ID);
@@ -137,11 +85,11 @@ describe('profilePageNode', () => {
 
   it('only references a breadcrumb when requested', () => {
     expect(
-      profilePageNode({ url: HOME_URL, name: 'Home' }).breadcrumb,
+      profilePageNode({ url: HOME_URL, name: 'Trang chủ' }).breadcrumb,
     ).toBeUndefined();
     const withCrumb = profilePageNode({
       url: `${SITE_URL}/about/`,
-      name: 'About',
+      name: 'Giới thiệu',
       hasBreadcrumb: true,
     });
     expect((withCrumb.breadcrumb as Record<string, unknown>)['@id']).toBe(
@@ -154,7 +102,7 @@ describe('collectionPageNode', () => {
   it('is a CollectionPage that is about the Person', () => {
     const node = collectionPageNode({
       url: `${SITE_URL}/writing/`,
-      name: 'Writing',
+      name: 'Bài viết',
     });
     expect(node['@type']).toBe('CollectionPage');
     expect((node.about as Record<string, unknown>)['@id']).toBe(PERSON_ID);
@@ -195,14 +143,7 @@ describe('blogPostingNode', () => {
     expect((node.mainEntityOfPage as Record<string, unknown>)['@id']).toBe(
       `${url}#webpage`,
     );
-  });
-
-  it('uses an ImageObject mirroring the OG image with dimensions', () => {
-    const image = blogPostingNode(mockPost).image as Record<string, unknown>;
-    expect(image['@type']).toBe('ImageObject');
-    expect(image.url).toBe(`${SITE_URL}/images/me.jpg`);
-    expect(image.width).toBe(SITE_IMAGE_DIMENSIONS.width);
-    expect(image.height).toBe(SITE_IMAGE_DIMENSIONS.height);
+    expect(node.image).toBeUndefined();
   });
 });
 
@@ -220,8 +161,8 @@ describe('breadcrumbNode', () => {
   it('builds an ordered BreadcrumbList anchored to the page', () => {
     const url = `${SITE_URL}/writing/`;
     const node = breadcrumbNode(url, [
-      { name: 'Home', url: HOME_URL },
-      { name: 'Writing', url },
+      { name: 'Trang chủ', url: HOME_URL },
+      { name: 'Bài viết', url },
     ]);
     expect(node['@type']).toBe('BreadcrumbList');
     expect(node['@id']).toBe(`${url}#breadcrumb`);
@@ -241,17 +182,5 @@ describe('buildGraph', () => {
     expect(nodes).toHaveLength(2);
     expect(nodes[0]['@id']).toBe(WEBSITE_ID);
     expect(nodes[1]['@id']).toBe(PERSON_ID);
-  });
-});
-
-describe('site image metadata', () => {
-  it('keeps declared image dimensions in sync with the public asset', () => {
-    const imagePath = path.join(
-      process.cwd(),
-      'public',
-      SITE_IMAGE_PATH.replace(/^\//, ''),
-    );
-
-    expect(SITE_IMAGE_DIMENSIONS).toEqual(readJpegDimensions(imagePath));
   });
 });

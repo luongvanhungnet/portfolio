@@ -11,14 +11,14 @@ import {
   profilePageNode,
   SITE_URL,
 } from '@/lib/schema';
+import { AUTHOR_NAME, SITE_DESCRIPTION } from '@/lib/utils';
 
 const ABOUT_URL = `${SITE_URL}/about/`;
 
-const ABOUT_DESCRIPTION =
-  "Learn about Michael D'Angelo - Member of the Technical Staff at OpenAI and builder across AI, security, and infrastructure.";
+const ABOUT_DESCRIPTION = `Giới thiệu ${AUTHOR_NAME} - ${SITE_DESCRIPTION}`;
 
 export const metadata: Metadata = createPageMetadata({
-  title: 'About',
+  title: 'Giới thiệu',
   description: ABOUT_DESCRIPTION,
   path: '/about/',
 });
@@ -30,19 +30,19 @@ export default function AboutPage() {
         nodes={[
           profilePageNode({
             url: ABOUT_URL,
-            name: 'About',
+            name: 'Giới thiệu',
             description: ABOUT_DESCRIPTION,
             hasBreadcrumb: true,
           }),
           breadcrumbNode(ABOUT_URL, [
-            { name: 'Home', url: HOME_URL },
-            { name: 'About', url: ABOUT_URL },
+            { name: 'Trang chủ', url: HOME_URL },
+            { name: 'Giới thiệu', url: ABOUT_URL },
           ]),
         ]}
       />
       <section className="about-page">
         <header className="about-header">
-          <h1 className="page-title">About</h1>
+          <h1 className="page-title">Giới thiệu</h1>
         </header>
         <AboutContent markdown={aboutMarkdown} />
       </section>

@@ -8,56 +8,30 @@ describe('about data', () => {
     expect(aboutMarkdown.length).toBeGreaterThan(0);
   });
 
-  it('contains the intro section', () => {
+  it('contains the TeX resume sections', () => {
     expect(aboutMarkdown).toContain('# Intro');
-    expect(aboutMarkdown).toContain('OpenAI');
-    expect(aboutMarkdown).toContain('Promptfoo');
+    expect(aboutMarkdown).toContain('# Học vấn');
+    expect(aboutMarkdown).toContain('# Dự án tiêu biểu');
+    expect(aboutMarkdown).toContain('# Liên hệ');
   });
 
-  it('contains the history section', () => {
-    expect(aboutMarkdown).toContain('# Some History');
-    expect(aboutMarkdown).toContain('MS-DOS');
+  it('contains the HUST education and professional focus', () => {
+    expect(aboutMarkdown).toContain('Đại học Bách khoa Hà Nội');
+    expect(aboutMarkdown).toContain('Công nghệ Thông tin Việt-Nhật');
+    expect(aboutMarkdown).toContain('AI, Machine Learning, Deep Learning');
   });
 
-  it('contains the likes section', () => {
-    expect(aboutMarkdown).toContain('# I Like');
-    expect(aboutMarkdown).toContain('Running');
-    expect(aboutMarkdown).toContain('Skiing');
-  });
-
-  it('contains the travel section', () => {
-    expect(aboutMarkdown).toContain('# Travel / Geography');
-    expect(aboutMarkdown).toContain('Buffalo, New York');
-  });
-
-  it('contains the fun facts section', () => {
-    expect(aboutMarkdown).toContain('# Fun Facts');
-  });
-
-  it('contains the dreams section', () => {
-    expect(aboutMarkdown).toContain('# I Dream Of');
-    expect(aboutMarkdown).toContain('Staying curious');
-  });
-
-  it('contains the admired websites section', () => {
-    expect(aboutMarkdown).toContain('# Websites from People I Admire');
+  it('contains contact links from the TeX resume', () => {
+    expect(aboutMarkdown).toContain('luongvanhungnet@gmail.com');
+    expect(aboutMarkdown).toContain('https://github.com/luongvanhungnet');
+    expect(aboutMarkdown).toContain('tel:+84347826500');
   });
 
   it('contains valid markdown links', () => {
-    // Check for markdown link format [text](url)
     const linkRegex = /\[.+?\]\(.+?\)/g;
     const links = aboutMarkdown.match(linkRegex);
 
     expect(links).not.toBeNull();
-    expect(links!.length).toBeGreaterThan(10);
-  });
-
-  it('contains properly formatted headers', () => {
-    // Check for markdown headers
-    const headerRegex = /^#+ .+$/gm;
-    const headers = aboutMarkdown.match(headerRegex);
-
-    expect(headers).not.toBeNull();
-    expect(headers!.length).toBeGreaterThan(5);
+    expect(links!.length).toBeGreaterThan(3);
   });
 });

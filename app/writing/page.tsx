@@ -19,7 +19,7 @@ const WRITING_URL = `${SITE_URL}/writing/`;
 
 export const metadata: Metadata = {
   ...createPageMetadata({
-    title: 'Writing',
+    title: 'Bài viết',
     description: WRITING_DESCRIPTION,
     path: '/writing/',
   }),
@@ -38,7 +38,6 @@ interface UnifiedItem {
   isExternal: boolean;
 }
 
-// Extracted component to reduce duplication
 interface WritingItemProps {
   item: UnifiedItem;
   showDate?: boolean;
@@ -83,7 +82,6 @@ function WritingItem({ item, showDate = true }: WritingItemProps) {
 }
 
 export default function WritingPage() {
-  // Get internal posts from markdown files
   const internalPosts = getAllPosts();
   const internalItems: UnifiedItem[] = internalPosts.map((post) => ({
     title: post.title,
@@ -93,20 +91,16 @@ export default function WritingPage() {
     isExternal: false,
   }));
 
-  // Get external articles from data file
   const externalItems: UnifiedItem[] = writing.map((item) => ({
     ...item,
     isExternal: true,
   }));
 
-  // Merge and sort all items
   const allItems = [...internalItems, ...externalItems];
   const dated = allItems
     .filter((item) => item.date)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   const undated = allItems.filter((item) => !item.date);
-
-  // Newest dated entry across internal posts and external articles.
   const latestPostDate = dated[0]?.date;
 
   return (
@@ -115,21 +109,21 @@ export default function WritingPage() {
         nodes={[
           collectionPageNode({
             url: WRITING_URL,
-            name: 'Writing',
+            name: 'Bài viết',
             description: WRITING_DESCRIPTION,
             hasBreadcrumb: true,
           }),
           blogNode(latestPostDate),
           breadcrumbNode(WRITING_URL, [
-            { name: 'Home', url: HOME_URL },
-            { name: 'Writing', url: WRITING_URL },
+            { name: 'Trang chủ', url: HOME_URL },
+            { name: 'Bài viết', url: WRITING_URL },
           ]),
         ]}
       />
       <article className="writing-page">
         <header className="writing-header">
           <div className="writing-header-row">
-            <h1 className="page-title">Writing</h1>
+            <h1 className="page-title">Bài viết</h1>
             <a
               href="/feed.xml"
               className="writing-rss-link"
@@ -148,12 +142,16 @@ export default function WritingPage() {
 
           {undated.length > 0 && (
             <>
-              <div className="writing-section-label">Guides</div>
+              <div className="writing-section-label">Không có ngày</div>
               {undated.map((item) => (
                 <WritingItem key={item.url} item={item} showDate={false} />
               ))}
             </>
           )}
+
+          {dated.length === 0 && undated.length === 0 ? (
+            <p className="writing-description">Chưa có bài viết.</p>
+          ) : null}
         </div>
       </article>
     </PageWrapper>

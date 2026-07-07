@@ -18,7 +18,7 @@ import './tailwind.css';
 
 const sourceSans = Source_Sans_3({
   weight: ['400', '700'],
-  subsets: ['latin'],
+  subsets: ['latin', 'vietnamese'],
   variable: '--font-source-sans',
   display: 'swap',
   preload: true,
@@ -27,7 +27,7 @@ const sourceSans = Source_Sans_3({
 
 const raleway = Raleway({
   weight: ['400', '800'],
-  subsets: ['latin'],
+  subsets: ['latin', 'vietnamese'],
   variable: '--font-raleway',
   display: 'swap',
   preload: true,
@@ -42,40 +42,47 @@ export const metadata: Metadata = {
   description: SITE_DESCRIPTION,
   keywords: [
     AUTHOR_NAME,
-    'OpenAI',
-    'Promptfoo',
-    'agent security',
-    'LLM security',
+    'Đại học Bách khoa Hà Nội',
+    'Công nghệ Thông tin Việt-Nhật',
+    'AI',
     'machine learning',
-    'startup founder',
-    'YC',
+    'deep learning',
+    'full-stack',
+    'Java',
+    'Spring Boot',
+    'React',
   ],
   authors: [{ name: AUTHOR_NAME }],
   creator: AUTHOR_NAME,
   metadataBase: new URL(SITE_URL),
   openGraph: {
     type: 'website',
-    locale: 'en_US',
+    locale: 'vi_VN',
     url: `${SITE_URL}/`,
     siteName: AUTHOR_NAME,
     title: AUTHOR_NAME,
     description: SITE_DESCRIPTION,
-    images: [
-      {
-        url: SITE_IMAGE_PATH,
-        width: SITE_IMAGE_DIMENSIONS.width,
-        height: SITE_IMAGE_DIMENSIONS.height,
-        alt: AUTHOR_NAME,
-      },
-    ],
+    ...(SITE_IMAGE_PATH && SITE_IMAGE_DIMENSIONS
+      ? {
+          images: [
+            {
+              url: SITE_IMAGE_PATH,
+              width: SITE_IMAGE_DIMENSIONS.width,
+              height: SITE_IMAGE_DIMENSIONS.height,
+              alt: AUTHOR_NAME,
+            },
+          ],
+        }
+      : {}),
   },
   twitter: {
-    card: 'summary_large_image',
-    site: TWITTER_HANDLE,
-    creator: TWITTER_HANDLE,
+    card: SITE_IMAGE_PATH ? 'summary_large_image' : 'summary',
+    ...(TWITTER_HANDLE
+      ? { site: TWITTER_HANDLE, creator: TWITTER_HANDLE }
+      : {}),
     title: AUTHOR_NAME,
     description: SITE_DESCRIPTION,
-    images: [SITE_IMAGE_PATH],
+    ...(SITE_IMAGE_PATH ? { images: [SITE_IMAGE_PATH] } : {}),
   },
   robots: {
     index: true,
@@ -97,7 +104,7 @@ export default function RootLayout({
 }) {
   return (
     <html
-      lang="en"
+      lang="vi"
       className={`${sourceSans.variable} ${raleway.variable}`}
       suppressHydrationWarning
     >

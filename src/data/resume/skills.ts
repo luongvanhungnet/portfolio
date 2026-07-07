@@ -1,6 +1,6 @@
 export interface Skill {
   title: string;
-  competency: number;
+  competency?: number;
   category: string[];
 }
 
@@ -10,121 +10,37 @@ export interface Category {
 }
 
 const skills: Skill[] = [
-  // Languages
+  { title: 'Java', category: ['Ngôn ngữ lập trình'] },
+  { title: 'Python', category: ['Ngôn ngữ lập trình'] },
+  { title: 'JavaScript', category: ['Ngôn ngữ lập trình'] },
+  { title: 'TypeScript', category: ['Ngôn ngữ lập trình'] },
+  { title: 'SQL', category: ['Ngôn ngữ lập trình'] },
+  { title: 'C/C++', category: ['Ngôn ngữ lập trình'] },
+  { title: 'Spring Boot', category: ['Backend / Frontend'] },
+  { title: 'Django', category: ['Backend / Frontend'] },
+  { title: 'REST API', category: ['Backend / Frontend'] },
+  { title: 'JWT', category: ['Backend / Frontend'] },
+  { title: 'React', category: ['Backend / Frontend'] },
+  { title: 'Vite', category: ['Backend / Frontend'] },
+  { title: 'Tailwind CSS', category: ['Backend / Frontend'] },
+  { title: 'HTML', category: ['Backend / Frontend'] },
+  { title: 'CSS', category: ['Backend / Frontend'] },
+  { title: 'PostgreSQL', category: ['Dữ liệu và công cụ'] },
+  { title: 'Docker', category: ['Dữ liệu và công cụ'] },
+  { title: 'Git/GitHub', category: ['Dữ liệu và công cụ'] },
+  { title: 'Postman', category: ['Dữ liệu và công cụ'] },
+  { title: 'TensorFlow', category: ['Dữ liệu và công cụ'] },
+  { title: 'Scikit-learn', category: ['Dữ liệu và công cụ'] },
+  { title: 'Pandas', category: ['Dữ liệu và công cụ'] },
+  { title: 'NumPy', category: ['Dữ liệu và công cụ'] },
+  { title: 'Tiếng Việt', category: ['Ngoại ngữ'] },
   {
-    title: 'Python',
-    competency: 5,
-    category: ['Languages', 'ML Engineering'],
+    title: 'Tiếng Anh: TOEIC Listening & Reading 555/990',
+    category: ['Ngoại ngữ'],
   },
-  {
-    title: 'TypeScript',
-    competency: 5,
-    category: ['Languages', 'Web Development'],
-  },
-  {
-    title: 'SQL',
-    competency: 4,
-    category: ['Languages', 'Databases'],
-  },
-  // AI & LLM
-  {
-    title: 'AI Agents',
-    competency: 5,
-    category: ['ML Engineering'],
-  },
-  {
-    title: 'LLM Evaluation',
-    competency: 5,
-    category: ['ML Engineering'],
-  },
-  {
-    title: 'AI Red-teaming',
-    competency: 5,
-    category: ['ML Engineering'],
-  },
-  {
-    title: 'LLM APIs',
-    competency: 5,
-    category: ['ML Engineering'],
-  },
-  {
-    title: 'RAG',
-    competency: 4,
-    category: ['ML Engineering'],
-  },
-  {
-    title: 'Prompt Engineering',
-    competency: 4,
-    category: ['ML Engineering'],
-  },
-  {
-    title: 'Vector Databases',
-    competency: 4,
-    category: ['ML Engineering', 'Databases'],
-  },
-  {
-    title: 'PyTorch',
-    competency: 4,
-    category: ['ML Engineering'],
-  },
-  {
-    title: 'Pandas',
-    competency: 5,
-    category: ['ML Engineering', 'Data Engineering'],
-  },
-  // Web Development
-  {
-    title: 'Node.js',
-    competency: 5,
-    category: ['Web Development'],
-  },
-  {
-    title: 'FastAPI',
-    competency: 4,
-    category: ['Web Development'],
-  },
-  {
-    title: 'Next.js',
-    competency: 3,
-    category: ['Web Development'],
-  },
-  // Databases
-  {
-    title: 'PostgreSQL',
-    competency: 4,
-    category: ['Databases'],
-  },
-  {
-    title: 'Redis',
-    competency: 3,
-    category: ['Databases'],
-  },
-  // Infrastructure
-  {
-    title: 'AWS',
-    competency: 4,
-    category: ['Infrastructure'],
-  },
-  {
-    title: 'Docker',
-    competency: 4,
-    category: ['Infrastructure'],
-  },
-  {
-    title: 'Kubernetes',
-    competency: 3,
-    category: ['Infrastructure'],
-  },
-  {
-    title: 'Observability',
-    competency: 4,
-    category: ['Infrastructure', 'ML Engineering'],
-  },
+  { title: 'Tiếng Nhật: đang học', category: ['Ngoại ngữ'] },
 ].map((skill) => ({ ...skill, category: skill.category.sort() }));
 
-/**
- * Build categories from skills, all using the accent color token.
- */
 function buildCategories(skillsList: Skill[]): Category[] {
   const uniqueCategories = Array.from(
     new Set(skillsList.flatMap(({ category }) => category)),

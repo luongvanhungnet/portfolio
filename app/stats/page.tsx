@@ -1,14 +1,11 @@
 import type { Metadata } from 'next';
 
-import Personal from '@/components/Stats/Personal';
-import Site from '@/components/Stats/Site';
-
 import PageWrapper from '@/components/Template/PageWrapper';
 import { createPageMetadata } from '@/lib/metadata';
 
 export const metadata: Metadata = createPageMetadata({
-  title: 'Stats',
-  description: "Some statistics about Michael D'Angelo and mldangelo.com",
+  title: 'Thống kê',
+  description: 'Chưa có dữ liệu thống kê cá nhân.',
   path: '/stats/',
 });
 
@@ -17,19 +14,9 @@ export default function StatsPage() {
     <PageWrapper>
       <section className="stats-page">
         <header className="stats-header">
-          <h1 className="stats-title">Stats</h1>
-          <p className="stats-subtitle">Some fun numbers</p>
+          <h1 className="stats-title">Thống kê</h1>
+          <p className="stats-subtitle">Chưa có dữ liệu thống kê cá nhân.</p>
         </header>
-        <div className="stats-content">
-          <section>
-            <h2 className="stats-section-title">About me</h2>
-            <Personal />
-          </section>
-          <section>
-            <h2 className="stats-section-title">This site</h2>
-            <Site />
-          </section>
-        </div>
       </section>
     </PageWrapper>
   );

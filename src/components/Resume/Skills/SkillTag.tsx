@@ -1,7 +1,6 @@
 import type { CSSProperties } from 'react';
 
 import type { Category, Skill } from '@/data/resume/skills';
-import { MAX_COMPETENCY } from '@/lib/utils';
 
 interface SkillTagProps {
   data: Skill;
@@ -9,7 +8,7 @@ interface SkillTagProps {
 }
 
 export default function SkillTag({ data, categories }: SkillTagProps) {
-  const { category, competency, title } = data;
+  const { category, competency = 3, title } = data;
 
   // Get the primary category color
   const categoryColor = categories.find((cat) =>
@@ -32,8 +31,8 @@ export default function SkillTag({ data, categories }: SkillTagProps) {
           '--tag-color': categoryColor,
         } as CSSProperties
       }
-      title={`${title}: ${competency} out of ${MAX_COMPETENCY}`}
-      aria-label={`${title}: proficiency ${competency} out of ${MAX_COMPETENCY}`}
+      title={title}
+      aria-label={title}
     >
       <span className="skill-tag-name">{title}</span>
     </span>

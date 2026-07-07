@@ -12,7 +12,7 @@ describe('ContactIcons', () => {
     expect(githubLink).toBeInTheDocument();
     expect(githubLink).toHaveAttribute(
       'href',
-      expect.stringContaining('github.com'),
+      'https://github.com/luongvanhungnet',
     );
 
     // Check if email link is present
@@ -20,8 +20,16 @@ describe('ContactIcons', () => {
     expect(emailLink).toBeInTheDocument();
     expect(emailLink).toHaveAttribute(
       'href',
-      expect.stringContaining('mailto:'),
+      'mailto:luongvanhungnet@gmail.com',
     );
+
+    expect(screen.getByRole('link', { name: /website/i })).toHaveAttribute(
+      'href',
+      'https://www.luongvanhungnet.xyz/',
+    );
+    expect(
+      screen.getByRole('link', { name: /\(\+84\) 347 826 500/i }),
+    ).toHaveAttribute('href', 'tel:+84347826500');
   });
 
   it('has correct number of contact links', () => {
