@@ -50,11 +50,14 @@ describe('Footer', () => {
     );
   });
 
-  it('renders contact icons section', () => {
+  it('renders compact contact links without long footer labels', () => {
     render(<Footer />);
 
     const socialSection = document.querySelector('.footer-social');
     expect(socialSection).toBeInTheDocument();
     expect(screen.getByText('Kết nối')).toBeInTheDocument();
+    expect(document.querySelector('.icons--footer')).toBeInTheDocument();
+    expect(screen.getByText('Phone')).toBeInTheDocument();
+    expect(screen.queryByText('(+84) 347 826 500')).not.toBeInTheDocument();
   });
 });

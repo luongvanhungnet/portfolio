@@ -37,7 +37,7 @@ export default function Footer() {
             <h4 id="footer-social-heading" className="footer-social-label">
               Kết nối
             </h4>
-            <ContactIcons />
+            <ContactIcons variant="footer" />
           </div>
         </div>
       </div>

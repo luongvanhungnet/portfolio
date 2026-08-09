@@ -144,7 +144,7 @@
   background: var(--color-border-bg);
 }
 
-[data-theme='dark'] .contact-content > .icons li a:hover {
+[data-theme='dark'] .contact-method-link:hover {
   background: color-mix(in srgb, var(--color-accent) 20%, transparent);
 }
 

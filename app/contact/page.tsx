@@ -31,7 +31,7 @@ export default function ContactPage() {
             <span>hoặc kết nối qua</span>
           </div>
 
-          <ContactIcons />
+          <ContactIcons variant="contact" />
         </div>
       </section>
     </PageWrapper>

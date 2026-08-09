@@ -4,10 +4,11 @@ import { describe, expect, it } from 'vitest';
 import ContactIcons from '../Contact/ContactIcons';
 
 describe('ContactIcons', () => {
-  it('renders contact icons', () => {
-    render(<ContactIcons />);
+  it('renders full contact methods in contact variant', () => {
+    render(<ContactIcons variant="contact" />);
 
-    // Check if GitHub link is present
+    expect(document.querySelector('.contact-methods')).toBeInTheDocument();
+
     const githubLink = screen.getByRole('link', { name: /github/i });
     expect(githubLink).toBeInTheDocument();
     expect(githubLink).toHaveAttribute(
@@ -32,8 +33,19 @@ describe('ContactIcons', () => {
     ).toHaveAttribute('href', 'tel:+84347826500');
   });
 
+  it('renders compact footer contact links without long visible phone text', () => {
+    render(<ContactIcons variant="footer" />);
+
+    expect(document.querySelector('.icons--footer')).toBeInTheDocument();
+    expect(
+      screen.getByRole('link', { name: /\(\+84\) 347 826 500/i }),
+    ).toHaveAttribute('href', 'tel:+84347826500');
+    expect(screen.getByText('Phone')).toBeInTheDocument();
+    expect(screen.queryByText('(+84) 347 826 500')).not.toBeInTheDocument();
+  });
+
   it('has correct number of contact links', () => {
-    render(<ContactIcons />);
+    render(<ContactIcons variant="contact" />);
     const links = screen.getAllByRole('link');
     expect(links.length).toBeGreaterThan(0);
   });
