@@ -184,6 +184,7 @@
 }
 
 .contact-content {
+  width: 100%;
   text-align: center;
 }
 
@@ -194,12 +195,16 @@
 
 .contact-email-container {
   display: block;
+  width: 100%;
   margin-bottom: 0.75rem;
 }
 
 .contact-email-link {
   display: inline-flex;
   align-items: baseline;
+  justify-content: center;
+  max-width: 100%;
+  box-sizing: border-box;
   padding: 0.75rem 1.5rem;
   font-size: var(--text-lg);
   font-weight: var(--font-weight-bold);
@@ -272,35 +277,64 @@
   background: var(--color-border);
 }
 
-/* Social icons - inline style */
-.contact-content > .icons {
-  display: flex;
-  justify-content: center;
+/* Contact methods - full labels for mixed icon/text entries */
+.contact-methods {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
   gap: 0.75rem;
-  margin-bottom: 0;
-}
-
-.contact-content > .icons li {
+  width: min(100%, 36rem);
+  margin: 0 auto;
   padding: 0;
+  list-style: none;
 }
 
-.contact-content > .icons li a {
-  display: flex;
+.contact-method {
+  min-width: 0;
+}
+
+.contact-method-link {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2.75rem;
-  height: 2.75rem;
-  border-radius: 50%;
+  gap: 0.55rem;
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.65rem 0.9rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
   color: var(--color-fg-light);
-  background: transparent;
+  background: color-mix(in srgb, var(--color-bg-alt) 92%, transparent);
+  text-decoration: none;
   transition:
     background-color var(--duration-fast) var(--ease-out),
-    color var(--duration-fast) var(--ease-out);
+    border-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
 }
 
-.contact-content > .icons li a:hover {
+.contact-method-link:hover {
   background: var(--color-accent-light);
+  border-color: var(--color-accent-border);
   color: var(--color-accent);
+  transform: translateY(var(--lift-sm));
+}
+
+.contact-method-icon {
+  width: 1rem;
+  height: 1rem;
+  flex: 0 0 auto;
+}
+
+.contact-method-label {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+.contact-method-link[href^='tel:'] .contact-method-label {
+  white-space: nowrap;
 }
 
 @media (max-width: 736px) {
@@ -321,8 +355,20 @@
   }
 
   .contact-email-link {
+    flex-wrap: wrap;
     font-size: var(--text-md);
     padding: 0.625rem 1.25rem;
+    white-space: normal;
+  }
+
+  .contact-email-prefix,
+  .contact-email-domain {
+    overflow-wrap: anywhere;
+  }
+
+  .contact-methods {
+    grid-template-columns: 1fr;
+    max-width: 20rem;
   }
 }
 
