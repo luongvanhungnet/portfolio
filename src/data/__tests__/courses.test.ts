@@ -5,15 +5,15 @@ import courses from '../resume/courses';
 describe('courses data', () => {
   it('exports relevant courses from the TeX resume', () => {
     expect(courses.map((course) => course.title)).toEqual([
-      'Cấu trúc dữ liệu và giải thuật',
-      'Lập trình hướng đối tượng',
-      'Cơ sở dữ liệu',
-      'Mạng máy tính',
-      'Nguyên lý hệ điều hành',
+      'Data Structures and Algorithms',
+      'Object-Oriented Programming',
+      'Databases',
+      'Computer Networks',
+      'Operating Systems Principles',
       'Machine Learning',
       'Deep Learning',
-      'Xử lý ngôn ngữ tự nhiên',
-      'Mô hình ngôn ngữ lớn (đang học)',
+      'Natural Language Processing',
+      'Large Language Models (in progress)',
     ]);
   });
 

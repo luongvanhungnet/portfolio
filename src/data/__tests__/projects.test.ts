@@ -92,8 +92,8 @@ describe('projects data', () => {
     expect(titles).toEqual([
       'VBAS -- Vehicle Breakdown Assistance System',
       'BlueMoon Apartment Management System',
-      'JP-Taxi -- Hệ thống đặt xe trực tuyến',
-      'Restaurant Finder -- Ứng dụng tìm kiếm nhà hàng',
+      'JP-Taxi -- Online Taxi Booking System',
+      'Restaurant Finder -- Restaurant Search Application',
     ]);
   });
 });

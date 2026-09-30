@@ -11,19 +11,19 @@ const routes: Route[] = [
     path: '/',
   },
   {
-    label: 'Giới thiệu',
+    label: 'About',
     path: '/about',
   },
   {
-    label: 'Hồ sơ',
+    label: 'Resume',
     path: '/resume',
   },
   {
-    label: 'Liên hệ',
+    label: 'Contact',
     path: '/contact',
   },
   {
-    label: 'Dự án',
+    label: 'Projects',
     path: '/projects',
   },
 ];

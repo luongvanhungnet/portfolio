@@ -6,11 +6,11 @@ describe('degrees data', () => {
   it('exports the education entry from the TeX resume', () => {
     expect(degrees).toEqual([
       {
-        school: 'Đại học Bách khoa Hà Nội',
-        degree: 'Chuyên ngành Công nghệ Thông tin Việt-Nhật',
+        school: 'Hanoi University of Science and Technology',
+        degree: 'Major in Vietnam-Japan Information Technology',
         link: 'https://hust.edu.vn',
-        period: '2023 - Hiện tại',
-        details: ['Trường Công nghệ Thông tin và Truyền thông'],
+        period: '2023 - Present',
+        details: ['School of Information and Communication Technology'],
       },
     ]);
   });

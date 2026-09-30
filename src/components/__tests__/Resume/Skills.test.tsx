@@ -30,14 +30,14 @@ describe('Skills', () => {
     render(<Skills skills={mockSkills} categories={mockCategories} />);
 
     expect(
-      screen.getByRole('heading', { name: /kỹ năng/i }),
+      screen.getByRole('heading', { name: /skills/i }),
     ).toBeInTheDocument();
   });
 
-  it('renders category filter buttons including Tất cả', () => {
+  it('renders category filter buttons including All', () => {
     render(<Skills skills={mockSkills} categories={mockCategories} />);
 
-    expect(screen.getByRole('button', { name: 'Tất cả' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'All' })).toBeInTheDocument();
     expect(
       screen.getByRole('button', { name: 'Languages' }),
     ).toBeInTheDocument();

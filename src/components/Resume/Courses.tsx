@@ -29,7 +29,7 @@ export default function Courses({ data }: CoursesProps) {
     <div className="courses">
       <div className="link-to" id="courses" />
       <div className="title">
-        <h3>Môn học liên quan</h3>
+        <h3>Relevant courses</h3>
       </div>
       <ul className="course-list">{getRows(data)}</ul>
     </div>

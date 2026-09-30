@@ -111,10 +111,10 @@ Lead paragraph.
       <AboutContent markdown={aboutMarkdown} />,
     );
 
-    expect(html).toContain('href="#hoc-van"');
-    expect(html).toContain('id="hoc-van"');
-    expect(html).toContain('href="#du-an-tieu-bieu"');
-    expect(html).toContain('id="du-an-tieu-bieu"');
+    expect(html).toContain('href="#education"');
+    expect(html).toContain('id="education"');
+    expect(html).toContain('href="#selected-projects"');
+    expect(html).toContain('id="selected-projects"');
   });
 
   it('supports same-page hash navigation from section links', async () => {
@@ -124,30 +124,30 @@ Lead paragraph.
 
     const nav = screen.getByRole('navigation', { name: 'About sections' });
     const navLink = within(nav).getByRole('link', {
-      name: 'Dự án tiêu biểu',
+      name: 'Selected projects',
     });
 
     navLink.click();
 
     await waitFor(() => {
-      expect(window.location.hash).toBe('#du-an-tieu-bieu');
+      expect(window.location.hash).toBe('#selected-projects');
     });
     expect(document.querySelector(window.location.hash)).toHaveTextContent(
-      'Dự án tiêu biểu',
+      'Selected projects',
     );
 
-    const heading = screen.getByRole('heading', { name: 'Liên hệ' });
+    const heading = screen.getByRole('heading', { name: 'Contact' });
     const permalink = within(heading).getByRole('link', {
-      name: 'Liên hệ',
+      name: 'Contact',
     });
 
     permalink.click();
 
     await waitFor(() => {
-      expect(window.location.hash).toBe('#lien-he');
+      expect(window.location.hash).toBe('#contact');
     });
     expect(document.querySelector(window.location.hash)).toHaveTextContent(
-      'Liên hệ',
+      'Contact',
     );
   });
 });

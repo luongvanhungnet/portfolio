@@ -42,8 +42,8 @@ export const metadata: Metadata = {
   description: SITE_DESCRIPTION,
   keywords: [
     AUTHOR_NAME,
-    'Đại học Bách khoa Hà Nội',
-    'Công nghệ Thông tin Việt-Nhật',
+    'Hanoi University of Science and Technology',
+    'Vietnam-Japan Information Technology',
     'AI',
     'machine learning',
     'deep learning',
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   openGraph: {
     type: 'website',
-    locale: 'vi_VN',
+    locale: 'en_US',
     url: `${SITE_URL}/`,
     siteName: AUTHOR_NAME,
     title: AUTHOR_NAME,
@@ -104,7 +104,7 @@ export default function RootLayout({
 }) {
   return (
     <html
-      lang="vi"
+      lang="en"
       className={`${sourceSans.variable} ${raleway.variable}`}
       suppressHydrationWarning
     >

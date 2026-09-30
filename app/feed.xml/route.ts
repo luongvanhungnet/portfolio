@@ -67,10 +67,10 @@ export async function GET() {
   const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>${escapeXml(AUTHOR_NAME)} - Bài viết</title>
+    <title>${escapeXml(AUTHOR_NAME)} - Writing</title>
     <link>${SITE_URL}/writing/</link>
-    <description>Các bài viết của ${escapeXml(AUTHOR_NAME)}.</description>
-    <language>vi-vn</language>
+    <description>Articles by ${escapeXml(AUTHOR_NAME)}.</description>
+    <language>en-us</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     <atom:link href="${SITE_URL}/feed.xml" rel="self" type="application/rss+xml"/>${rssItems}
   </channel>

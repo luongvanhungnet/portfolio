@@ -4,14 +4,14 @@ import { AUTHOR_NAME, SITE_URL } from '@/lib/utils';
 import { GET } from '../route';
 
 describe('feed.xml route', () => {
-  it('uses canonical feed links and Vietnamese channel metadata', async () => {
+  it('uses canonical feed links and English channel metadata', async () => {
     const response = await GET();
     const xml = await response.text();
 
     expect(xml).toContain(`${SITE_URL}/writing/`);
     expect(xml).toContain(`${SITE_URL}/feed.xml`);
-    expect(xml).toContain(`${AUTHOR_NAME} - Bài viết`);
-    expect(xml).toContain('<language>vi-vn</language>');
+    expect(xml).toContain(`${AUTHOR_NAME} - Writing`);
+    expect(xml).toContain('<language>en-us</language>');
     expect(xml).not.toContain(`${SITE_URL}/feed.xml/`);
   });
 

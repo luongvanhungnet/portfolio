@@ -14,31 +14,31 @@ describe('ResumeNav', () => {
   it('renders links to all resume sections', () => {
     render(<ResumeNav />);
 
-    expect(screen.getByRole('link', { name: /học vấn/i })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /education/i })).toHaveAttribute(
       'href',
       '#education',
     );
-    expect(screen.getByRole('link', { name: /định hướng/i })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /focus/i })).toHaveAttribute(
       'href',
       '#focus',
     );
-    expect(screen.getByRole('link', { name: /dự án/i })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /projects/i })).toHaveAttribute(
       'href',
       '#projects',
     );
-    expect(screen.getByRole('link', { name: /kỹ năng/i })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /skills/i })).toHaveAttribute(
       'href',
       '#skills',
     );
-    expect(screen.getByRole('link', { name: /môn học/i })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /courses/i })).toHaveAttribute(
       'href',
       '#courses',
     );
-    expect(screen.getByRole('link', { name: /thành tích/i })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /achievements/i })).toHaveAttribute(
       'href',
       '#achievements',
     );
-    expect(screen.getByRole('link', { name: /liên hệ/i })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /contact/i })).toHaveAttribute(
       'href',
       '#contact',
     );
@@ -61,7 +61,7 @@ describe('ResumeNav', () => {
   it('education link is active by default', () => {
     render(<ResumeNav />);
 
-    const educationLink = screen.getByRole('link', { name: /học vấn/i });
+    const educationLink = screen.getByRole('link', { name: /education/i });
     expect(educationLink).toHaveClass('active');
   });
 });

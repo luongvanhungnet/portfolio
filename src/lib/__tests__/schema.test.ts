@@ -59,7 +59,7 @@ describe('personNode', () => {
     expect(node.jobTitle).toBeUndefined();
     const alumniOf = node.alumniOf as Record<string, unknown>[];
     expect(alumniOf[0]['@type']).toBe('CollegeOrUniversity');
-    expect(alumniOf[0].name).toBe('Đại học Bách khoa Hà Nội');
+    expect(alumniOf[0].name).toBe('Hanoi University of Science and Technology');
   });
 });
 

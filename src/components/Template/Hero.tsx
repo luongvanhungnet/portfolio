@@ -9,28 +9,28 @@ export default function Hero() {
         </h1>
 
         <p className="hero-tagline">
-          Sinh viên Công nghệ Thông tin Việt-Nhật tại{' '}
+          Vietnam-Japan Information Technology student at{' '}
           <a href="https://hust.edu.vn" className="hero-highlight">
-            Đại học Bách khoa Hà Nội
+            Hanoi University of Science and Technology
           </a>
           .
           <br />
-          Định hướng AI, Machine Learning, Deep Learning, Big Data, Data
-          Analysis và phát triển Full-stack.
+          Focused on AI, Machine Learning, Deep Learning, Big Data, Data
+          Analysis, and Full-stack development.
         </p>
 
         <div className="hero-chips">
           <span className="hero-chip">AI / Machine Learning</span>
           <span className="hero-chip">Full-stack</span>
-          <span className="hero-chip">HUST 2023 - Hiện tại</span>
+          <span className="hero-chip">HUST 2023 - Present</span>
         </div>
 
         <div className="hero-cta">
           <Link href="/about" className="button">
-            Giới thiệu
+            About me
           </Link>
           <Link href="/resume" className="button button-secondary">
-            Xem hồ sơ
+            View resume
           </Link>
         </div>
       </div>

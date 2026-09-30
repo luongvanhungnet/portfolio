@@ -9,19 +9,21 @@ const achievements: Achievement[] = [
     date: '08/2023',
   },
   {
-    title: 'Top 15 điểm thi tốt nghiệp THPT khối A00 tỉnh Lạng Sơn',
+    title:
+      'Top 15 in the A00 high school graduation exam group in Lạng Sơn Province',
     date: '2023',
   },
   {
-    title: 'Giải Tư Cuộc thi Lập trình điều khiển Robot tỉnh Lạng Sơn',
+    title: 'Fourth Prize, Lạng Sơn Provincial Robot Programming Competition',
     date: '2023',
   },
   {
-    title: 'Giải Ba Kỳ thi Học sinh giỏi cấp tỉnh môn Vật lý lớp 12',
+    title:
+      'Third Prize, Grade 12 Physics, Provincial Excellent Student Competition',
     date: '2023',
   },
   {
-    title: 'Giải Tư Cuộc thi Lập trình điều khiển Robot tỉnh Lạng Sơn',
+    title: 'Fourth Prize, Lạng Sơn Provincial Robot Programming Competition',
     date: '2022',
   },
 ];

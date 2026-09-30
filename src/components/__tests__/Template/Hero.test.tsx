@@ -22,7 +22,7 @@ describe('Hero', () => {
     render(<Hero />);
 
     const hustLink = screen.getByRole('link', {
-      name: /đại học bách khoa hà nội/i,
+      name: /hanoi university of science and technology/i,
     });
     expect(hustLink).toHaveAttribute('href', 'https://hust.edu.vn');
     expect(hustLink).toHaveClass('hero-highlight');
@@ -33,17 +33,17 @@ describe('Hero', () => {
 
     expect(screen.getByText('AI / Machine Learning')).toBeInTheDocument();
     expect(screen.getByText('Full-stack')).toBeInTheDocument();
-    expect(screen.getByText('HUST 2023 - Hiện tại')).toBeInTheDocument();
+    expect(screen.getByText('HUST 2023 - Present')).toBeInTheDocument();
   });
 
   it('renders CTA buttons with correct links', () => {
     render(<Hero />);
 
-    const aboutButton = screen.getByRole('link', { name: /giới thiệu/i });
+    const aboutButton = screen.getByRole('link', { name: /about me/i });
     expect(aboutButton).toHaveAttribute('href', '/about');
     expect(aboutButton).toHaveClass('button');
 
-    const resumeButton = screen.getByRole('link', { name: /xem hồ sơ/i });
+    const resumeButton = screen.getByRole('link', { name: /view resume/i });
     expect(resumeButton).toHaveAttribute('href', '/resume');
     expect(resumeButton).toHaveClass('button-secondary');
   });

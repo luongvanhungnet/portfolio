@@ -20,13 +20,13 @@ export default function Footer() {
         <div className="footer-right">
           <nav className="footer-links" aria-labelledby="footer-links-heading">
             <h4 id="footer-links-heading" className="footer-links-label">
-              Điều hướng
+              Navigate
             </h4>
             <div className="footer-links-grid">
-              <Link href="/about">Giới thiệu</Link>
-              <Link href="/resume">Hồ sơ</Link>
-              <Link href="/projects">Dự án</Link>
-              <Link href="/contact">Liên hệ</Link>
+              <Link href="/about">About</Link>
+              <Link href="/resume">Resume</Link>
+              <Link href="/projects">Projects</Link>
+              <Link href="/contact">Contact</Link>
             </div>
           </nav>
 
@@ -35,7 +35,7 @@ export default function Footer() {
             aria-labelledby="footer-social-heading"
           >
             <h4 id="footer-social-heading" className="footer-social-label">
-              Kết nối
+              Connect
             </h4>
             <ContactIcons variant="footer" />
           </div>

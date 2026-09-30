@@ -16,7 +16,7 @@ describe('Footer', () => {
 
     expect(screen.getAllByText('Lương Văn Hưng').length).toBeGreaterThan(0);
     expect(
-      screen.getByText(/Công nghệ Thông tin Việt-Nhật/i),
+      screen.getByText(/Vietnam-Japan Information Technology/i),
     ).toBeInTheDocument();
   });
 
@@ -32,19 +32,19 @@ describe('Footer', () => {
   it('renders navigation links', () => {
     render(<Footer />);
 
-    expect(screen.getByRole('link', { name: /giới thiệu/i })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /about/i })).toHaveAttribute(
       'href',
       '/about',
     );
-    expect(screen.getByRole('link', { name: /hồ sơ/i })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /resume/i })).toHaveAttribute(
       'href',
       '/resume',
     );
-    expect(screen.getByRole('link', { name: /dự án/i })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /projects/i })).toHaveAttribute(
       'href',
       '/projects',
     );
-    expect(screen.getByRole('link', { name: /liên hệ/i })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /contact/i })).toHaveAttribute(
       'href',
       '/contact',
     );
@@ -55,7 +55,7 @@ describe('Footer', () => {
 
     const socialSection = document.querySelector('.footer-social');
     expect(socialSection).toBeInTheDocument();
-    expect(screen.getByText('Kết nối')).toBeInTheDocument();
+    expect(screen.getByText('Connect')).toBeInTheDocument();
     expect(document.querySelector('.icons--footer')).toBeInTheDocument();
     expect(screen.getByText('Phone')).toBeInTheDocument();
     expect(screen.queryByText('(+84) 347 826 500')).not.toBeInTheDocument();

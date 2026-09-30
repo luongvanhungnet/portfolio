@@ -23,7 +23,7 @@ import {
 } from '@/lib/utils';
 
 export const metadata: Metadata = createPageMetadata({
-  title: 'Hồ sơ',
+  title: 'Resume',
   description: `${AUTHOR_NAME} - ${SITE_DESCRIPTION}`,
   path: '/resume/',
 });
@@ -33,7 +33,7 @@ export default function ResumePage() {
     <PageWrapper>
       <section className="resume-page">
         <header className="resume-header">
-          <h1 className="resume-title">Hồ sơ</h1>
+          <h1 className="resume-title">Resume</h1>
           <p className="resume-summary">{SITE_DESCRIPTION}</p>
         </header>
 
@@ -46,17 +46,17 @@ export default function ResumePage() {
 
           <section id="focus" className="resume-section">
             <div className="title">
-              <h3>Định hướng chuyên môn</h3>
+              <h3>Professional focus</h3>
             </div>
             <p>
-              AI, Machine Learning, Deep Learning, Big Data, Data Analysis, phát
-              triển Full-stack và phát triển ứng dụng.
+              AI, Machine Learning, Deep Learning, Big Data, Data Analysis,
+              Full-stack development, and application development.
             </p>
           </section>
 
           <section id="projects" className="resume-section">
             <div className="title">
-              <h3>Dự án tiêu biểu</h3>
+              <h3>Selected projects</h3>
             </div>
             {projects.map((project) => (
               <article className="jobs-container" key={project.title}>
@@ -74,7 +74,7 @@ export default function ResumePage() {
                 <p>{project.desc}</p>
                 {project.tech ? (
                   <p>
-                    <strong>Công nghệ:</strong> {project.tech.join(', ')}
+                    <strong>Technologies:</strong> {project.tech.join(', ')}
                   </p>
                 ) : null}
               </article>
@@ -91,7 +91,7 @@ export default function ResumePage() {
 
           <section id="achievements" className="resume-section">
             <div className="title">
-              <h3>Thành tích và chứng chỉ</h3>
+              <h3>Achievements and certifications</h3>
             </div>
             <ul className="points">
               {achievements.map((achievement) => (
@@ -105,15 +105,14 @@ export default function ResumePage() {
 
           <section id="contact" className="resume-section">
             <div className="title">
-              <h3>Liên hệ</h3>
+              <h3>Contact</h3>
             </div>
             <ul className="points">
               <li>
                 Email: <a href={`mailto:${AUTHOR_EMAIL}`}>{AUTHOR_EMAIL}</a>
               </li>
               <li>
-                Điện thoại:{' '}
-                <a href={`tel:${AUTHOR_PHONE_TEL}`}>{AUTHOR_PHONE}</a>
+                Phone: <a href={`tel:${AUTHOR_PHONE_TEL}`}>{AUTHOR_PHONE}</a>
               </li>
               <li>
                 GitHub: <a href={AUTHOR_GITHUB_URL}>luongvanhungnet</a>

@@ -19,7 +19,7 @@ const WRITING_URL = `${SITE_URL}/writing/`;
 
 export const metadata: Metadata = {
   ...createPageMetadata({
-    title: 'Bài viết',
+    title: 'Writing',
     description: WRITING_DESCRIPTION,
     path: '/writing/',
   }),
@@ -109,21 +109,21 @@ export default function WritingPage() {
         nodes={[
           collectionPageNode({
             url: WRITING_URL,
-            name: 'Bài viết',
+            name: 'Writing',
             description: WRITING_DESCRIPTION,
             hasBreadcrumb: true,
           }),
           blogNode(latestPostDate),
           breadcrumbNode(WRITING_URL, [
-            { name: 'Trang chủ', url: HOME_URL },
-            { name: 'Bài viết', url: WRITING_URL },
+            { name: 'Home', url: HOME_URL },
+            { name: 'Writing', url: WRITING_URL },
           ]),
         ]}
       />
       <article className="writing-page">
         <header className="writing-header">
           <div className="writing-header-row">
-            <h1 className="page-title">Bài viết</h1>
+            <h1 className="page-title">Writing</h1>
             <a
               href="/feed.xml"
               className="writing-rss-link"
@@ -142,7 +142,7 @@ export default function WritingPage() {
 
           {undated.length > 0 && (
             <>
-              <div className="writing-section-label">Không có ngày</div>
+              <div className="writing-section-label">Undated</div>
               {undated.map((item) => (
                 <WritingItem key={item.url} item={item} showDate={false} />
               ))}
@@ -150,7 +150,7 @@ export default function WritingPage() {
           )}
 
           {dated.length === 0 && undated.length === 0 ? (
-            <p className="writing-description">Chưa có bài viết.</p>
+            <p className="writing-description">No articles yet.</p>
           ) : null}
         </div>
       </article>

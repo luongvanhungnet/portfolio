@@ -38,7 +38,7 @@ export function createPageMetadata({
     description,
     openGraph: {
       type: 'website',
-      locale: 'vi_VN',
+      locale: 'en_US',
       siteName: AUTHOR_NAME,
       title: pageTitle,
       description,

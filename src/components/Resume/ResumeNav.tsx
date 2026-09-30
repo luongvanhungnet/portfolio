@@ -3,13 +3,13 @@
 import { useEffect, useRef, useState } from 'react';
 
 const sections = [
-  { name: 'Học vấn', id: 'education' },
-  { name: 'Định hướng', id: 'focus' },
-  { name: 'Dự án', id: 'projects' },
-  { name: 'Kỹ năng', id: 'skills' },
-  { name: 'Môn học', id: 'courses' },
-  { name: 'Thành tích', id: 'achievements' },
-  { name: 'Liên hệ', id: 'contact' },
+  { name: 'Education', id: 'education' },
+  { name: 'Focus', id: 'focus' },
+  { name: 'Projects', id: 'projects' },
+  { name: 'Skills', id: 'skills' },
+  { name: 'Courses', id: 'courses' },
+  { name: 'Achievements', id: 'achievements' },
+  { name: 'Contact', id: 'contact' },
 ] as const;
 
 type SectionId = (typeof sections)[number]['id'];
@@ -76,7 +76,7 @@ export default function ResumeNav() {
   }, []);
 
   return (
-    <nav className="resume-nav" aria-label="Các phần trong hồ sơ">
+    <nav className="resume-nav" aria-label="Resume sections">
       {sections.map((section) => (
         <a
           key={section.id}

@@ -20,7 +20,7 @@ describe('Courses', () => {
     render(<Courses data={mockCourses} />);
 
     expect(
-      screen.getByRole('heading', { name: /môn học liên quan/i }),
+      screen.getByRole('heading', { name: /relevant courses/i }),
     ).toBeInTheDocument();
   });
 

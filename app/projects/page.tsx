@@ -15,10 +15,10 @@ import { AUTHOR_NAME } from '@/lib/utils';
 
 const PROJECTS_URL = `${SITE_URL}/projects/`;
 
-const PROJECTS_DESCRIPTION = `Các dự án tiêu biểu của ${AUTHOR_NAME}.`;
+const PROJECTS_DESCRIPTION = `Selected projects by ${AUTHOR_NAME}.`;
 
 export const metadata: Metadata = createPageMetadata({
-  title: 'Dự án',
+  title: 'Projects',
   description: PROJECTS_DESCRIPTION,
   path: '/projects/',
 });
@@ -33,25 +33,25 @@ export default function ProjectsPage() {
         nodes={[
           collectionPageNode({
             url: PROJECTS_URL,
-            name: 'Dự án',
+            name: 'Projects',
             description: PROJECTS_DESCRIPTION,
             hasBreadcrumb: true,
           }),
           breadcrumbNode(PROJECTS_URL, [
-            { name: 'Trang chủ', url: HOME_URL },
-            { name: 'Dự án', url: PROJECTS_URL },
+            { name: 'Home', url: HOME_URL },
+            { name: 'Projects', url: PROJECTS_URL },
           ]),
         ]}
       />
       <section className="projects-page">
         <header className="projects-header">
-          <h1 className="page-title">Dự án</h1>
-          <p className="page-subtitle">Các dự án tiêu biểu từ CV</p>
+          <h1 className="page-title">Projects</h1>
+          <p className="page-subtitle">Selected projects from my resume</p>
         </header>
 
         {featuredProjects.length > 0 && (
           <section className="projects-featured">
-            <h2 className="projects-section-title">Dự án nổi bật</h2>
+            <h2 className="projects-section-title">Featured projects</h2>
             <div className="projects-grid projects-grid--featured">
               {featuredProjects.map((project) => (
                 <Cell data={project} key={project.title} />
@@ -62,7 +62,7 @@ export default function ProjectsPage() {
 
         {otherProjects.length > 0 && (
           <section className="projects-other">
-            <h2 className="projects-section-title">Dự án khác</h2>
+            <h2 className="projects-section-title">Other projects</h2>
             <div className="projects-grid">
               {otherProjects.map((project) => (
                 <Cell data={project} key={project.title} />

@@ -8,8 +8,8 @@ import { createPageMetadata } from '@/lib/metadata';
 import { AUTHOR_EMAIL, AUTHOR_NAME } from '@/lib/utils';
 
 export const metadata: Metadata = createPageMetadata({
-  title: 'Liên hệ',
-  description: `Liên hệ ${AUTHOR_NAME} qua email ${AUTHOR_EMAIL}.`,
+  title: 'Contact',
+  description: `Contact ${AUTHOR_NAME} at ${AUTHOR_EMAIL}.`,
   path: '/contact/',
 });
 
@@ -18,17 +18,19 @@ export default function ContactPage() {
     <PageWrapper>
       <section className="contact-page">
         <header className="contact-header">
-          <h1 className="page-title">Liên hệ</h1>
+          <h1 className="page-title">Contact</h1>
         </header>
 
         <div className="contact-content">
           <div className="contact-email-block">
             <EmailLink />
-            <p className="contact-hint">Email và các kênh liên hệ trong CV</p>
+            <p className="contact-hint">
+              Email and contact details from my resume
+            </p>
           </div>
 
           <div className="contact-divider">
-            <span>hoặc kết nối qua</span>
+            <span>or connect via</span>
           </div>
 
           <ContactIcons variant="contact" />

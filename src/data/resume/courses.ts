@@ -6,15 +6,15 @@ export interface Course {
 }
 
 const courses: Course[] = [
-  { title: 'Cấu trúc dữ liệu và giải thuật' },
-  { title: 'Lập trình hướng đối tượng' },
-  { title: 'Cơ sở dữ liệu' },
-  { title: 'Mạng máy tính' },
-  { title: 'Nguyên lý hệ điều hành' },
+  { title: 'Data Structures and Algorithms' },
+  { title: 'Object-Oriented Programming' },
+  { title: 'Databases' },
+  { title: 'Computer Networks' },
+  { title: 'Operating Systems Principles' },
   { title: 'Machine Learning' },
   { title: 'Deep Learning' },
-  { title: 'Xử lý ngôn ngữ tự nhiên' },
-  { title: 'Mô hình ngôn ngữ lớn (đang học)' },
+  { title: 'Natural Language Processing' },
+  { title: 'Large Language Models (in progress)' },
 ];
 
 export default courses;

@@ -10,14 +10,16 @@ describe('about data', () => {
 
   it('contains the TeX resume sections', () => {
     expect(aboutMarkdown).toContain('# Intro');
-    expect(aboutMarkdown).toContain('# Học vấn');
-    expect(aboutMarkdown).toContain('# Dự án tiêu biểu');
-    expect(aboutMarkdown).toContain('# Liên hệ');
+    expect(aboutMarkdown).toContain('# Education');
+    expect(aboutMarkdown).toContain('# Selected projects');
+    expect(aboutMarkdown).toContain('# Contact');
   });
 
   it('contains the HUST education and professional focus', () => {
-    expect(aboutMarkdown).toContain('Đại học Bách khoa Hà Nội');
-    expect(aboutMarkdown).toContain('Công nghệ Thông tin Việt-Nhật');
+    expect(aboutMarkdown).toContain(
+      'Hanoi University of Science and Technology',
+    );
+    expect(aboutMarkdown).toContain('Vietnam-Japan Information Technology');
     expect(aboutMarkdown).toContain('AI, Machine Learning, Deep Learning');
   });
 

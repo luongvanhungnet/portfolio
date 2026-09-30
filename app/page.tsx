@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 
 import { SchemaGraph } from '@/components/Schema';
+import ActiveProjects from '@/components/Template/ActiveProjects';
 import Hero from '@/components/Template/Hero';
 import PageWrapper from '@/components/Template/PageWrapper';
 import { HOME_URL, profilePageNode } from '@/lib/schema';
@@ -12,11 +13,12 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   return (
-    <PageWrapper>
+    <PageWrapper mainClassName="page-main--wide">
       <SchemaGraph
         nodes={[profilePageNode({ url: HOME_URL, name: AUTHOR_NAME })]}
       />
       <Hero />
+      <ActiveProjects />
     </PageWrapper>
   );
 }

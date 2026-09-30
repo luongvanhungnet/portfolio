@@ -19,7 +19,7 @@ export const SITE_IMAGE_DIMENSIONS: { width: number; height: number } | null =
 
 // Canonical one-line bio, shared across page metadata, OpenGraph, and JSON-LD.
 export const SITE_DESCRIPTION =
-  'Sinh viên Công nghệ Thông tin Việt-Nhật tại Đại học Bách khoa Hà Nội, định hướng AI, Machine Learning, Deep Learning, Big Data, Data Analysis và phát triển Full-stack.';
+  'Vietnam-Japan Information Technology student at Hanoi University of Science and Technology, focused on AI, Machine Learning, Deep Learning, Big Data, Data Analysis, and Full-stack development.';
 
 // Image dimension constants
 export const AVATAR_SIZE = {

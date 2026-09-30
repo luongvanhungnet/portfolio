@@ -38,12 +38,10 @@ describe('Navigation', () => {
   it('renders navigation links for all non-index routes', () => {
     render(<Navigation />);
 
-    expect(
-      screen.getByRole('link', { name: /giới thiệu/i }),
-    ).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /hồ sơ/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /dự án/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /liên hệ/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /about/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /resume/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /projects/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /contact/i })).toBeInTheDocument();
     expect(
       screen.queryByRole('link', { name: /writing/i }),
     ).not.toBeInTheDocument();
@@ -57,7 +55,7 @@ describe('Navigation', () => {
     render(<Navigation />);
 
     // About link should not be active
-    const aboutLink = screen.getByRole('link', { name: /giới thiệu/i });
+    const aboutLink = screen.getByRole('link', { name: /about/i });
     expect(aboutLink).not.toHaveClass('active');
   });
 
@@ -65,7 +63,7 @@ describe('Navigation', () => {
     mockPathname.mockReturnValue('/about');
     render(<Navigation />);
 
-    const aboutLink = screen.getByRole('link', { name: /giới thiệu/i });
+    const aboutLink = screen.getByRole('link', { name: /about/i });
     expect(aboutLink).toHaveClass('active');
     expect(aboutLink).toHaveAttribute('aria-current', 'page');
   });
@@ -74,7 +72,7 @@ describe('Navigation', () => {
     mockPathname.mockReturnValue('/resume/skills');
     render(<Navigation />);
 
-    const resumeLink = screen.getByRole('link', { name: /hồ sơ/i });
+    const resumeLink = screen.getByRole('link', { name: /resume/i });
     expect(resumeLink).toHaveClass('active');
   });
 

@@ -31,7 +31,7 @@ function buttonReducer(state: ButtonState, action: ButtonAction): ButtonState {
       }
 
       // Turn on the default button if no other buttons are active
-      newButtons['Tất cả'] = !Object.keys(state).some((key) => newButtons[key]);
+      newButtons.All = !Object.keys(state).some((key) => newButtons[key]);
       return newButtons;
     }
     default:
@@ -41,7 +41,7 @@ function buttonReducer(state: ButtonState, action: ButtonAction): ButtonState {
 
 export default function Skills({ skills, categories }: SkillsProps) {
   const initialButtons = Object.fromEntries(
-    [['Tất cả', false]].concat(categories.map(({ name }) => [name, false])),
+    [['All', false]].concat(categories.map(({ name }) => [name, false])),
   );
 
   const [buttons, dispatch] = useReducer(buttonReducer, initialButtons);
@@ -67,7 +67,7 @@ export default function Skills({ skills, categories }: SkillsProps) {
   // Get active category
   const activeCategory = Object.keys(buttons).reduce(
     (cat, key) => (buttons[key] ? key : cat),
-    'Tất cả',
+    'All',
   );
 
   // Memoize sorting, filtering, and grouping to avoid recalculating on every render
@@ -83,11 +83,11 @@ export default function Skills({ skills, categories }: SkillsProps) {
     // Filter skills based on active category
     const filteredSkills = sortedSkills.filter(
       (skill) =>
-        activeCategory === 'Tất cả' || skill.category.includes(activeCategory),
+        activeCategory === 'All' || skill.category.includes(activeCategory),
     );
 
     // Group skills by their primary category for grouped view
-    if (activeCategory === 'Tất cả') {
+    if (activeCategory === 'All') {
       return categories.reduce(
         (groups, category) => {
           const categorySkills = filteredSkills.filter((skill) =>
@@ -108,7 +108,7 @@ export default function Skills({ skills, categories }: SkillsProps) {
     <div className="skills">
       <div className="link-to" id="skills" />
       <div className="title">
-        <h3>Kỹ năng</h3>
+        <h3>Skills</h3>
       </div>
       <div className="skill-button-container">{buttonElements}</div>
       <div className="skill-groups">

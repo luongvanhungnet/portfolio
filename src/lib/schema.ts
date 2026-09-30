@@ -28,14 +28,14 @@ export const PERSON_ID = `${SITE_URL}/#person`;
 export const WEBSITE_ID = `${SITE_URL}/#website`;
 export const BLOG_ID = `${SITE_URL}/writing/#blog`;
 
-export const SITE_LANGUAGE = 'vi-VN';
+export const SITE_LANGUAGE = 'en-US';
 export const SITE_IMAGE = SITE_IMAGE_PATH
   ? `${SITE_URL}${SITE_IMAGE_PATH}`
   : undefined;
 export const HOME_URL = `${SITE_URL}/`;
 
 // Shared so the /writing metadata and the Blog node stay in sync.
-export const WRITING_DESCRIPTION = 'Các bài viết của Lương Văn Hưng.';
+export const WRITING_DESCRIPTION = 'Articles by Lương Văn Hưng.';
 
 type SchemaNode = Record<string, unknown>;
 

@@ -33,9 +33,9 @@ describe('createHeadingId', () => {
         createHeadingId(title),
       ]),
     ).toEqual([
-      ['Học vấn', 'hoc-van'],
-      ['Dự án tiêu biểu', 'du-an-tieu-bieu'],
-      ['Liên hệ', 'lien-he'],
+      ['Education', 'education'],
+      ['Selected projects', 'selected-projects'],
+      ['Contact', 'contact'],
     ]);
   });
 });
